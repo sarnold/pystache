@@ -237,8 +237,8 @@ def parse(u):
         value = loader.construct_mapping(node)
         return eval(value['python'], {})
 
-    yaml.add_constructor('!code', code_constructor)
-    return yaml.load(u)
+    yaml.add_constructor(u'!code', code_constructor)
+    return yaml.full_load(u)
 
 
 class SpecTestBase(unittest.TestCase, AssertStringMixin):

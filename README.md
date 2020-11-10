@@ -10,11 +10,14 @@ Pystache
 <!-- -->
 <!-- We leave the leading brackets empty here.  Otherwise, unwanted -->
 <!-- caption text shows up in the reST version converted by pandoc. -->
-
 ![GitHub CI Workflow Status](https://img.shields.io/github/workflow/status/sarnold/pystache/ci)
 
-[Pystache](https://github.com/PennyDreadfulMTG/pystache) is a Python
-implementation of [Mustache](https://mustache.github.com/). Mustache is a
+This fork of Pystache is currently tested on Python 2.7 and Python 3.5 - 3.9 on Linux, Darwin, and Windows.
+
+![](http://defunkt.github.com/pystache/images/logo_phillips.png "mustachioed, monocled snake by David Phillips")
+
+[Pystache](http://defunkt.github.com/pystache) is a Python
+implementation of [Mustache](http://mustache.github.com/). Mustache is a
 framework-agnostic, logic-free templating system inspired by
 [ctemplate](https://code.google.com/p/google-ctemplate/) and
 et by Ivan Formichev. Like ctemplate, Mustache "emphasizes separating

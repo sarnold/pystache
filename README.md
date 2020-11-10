@@ -11,7 +11,7 @@ Pystache
 <!-- We leave the leading brackets empty here.  Otherwise, unwanted -->
 <!-- caption text shows up in the reST version converted by pandoc. -->
 
-![](https://github.com/PennyDreadfulMTG/pystache/blob/master/gh/images/logo_phillips.png "mustachioed, monocled snake by David Phillips")
+![GitHub CI Workflow Status](https://img.shields.io/github/workflow/status/sarnold/pystache/ci)
 
 [Pystache](https://github.com/PennyDreadfulMTG/pystache) is a Python
 implementation of [Mustache](https://mustache.github.com/). Mustache is a

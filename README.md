@@ -12,7 +12,7 @@ Pystache
 <!-- caption text shows up in the reST version converted by pandoc. -->
 ![](http://defunkt.github.com/pystache/images/logo_phillips.png "mustachioed, monocled snake by David Phillips")
 
-![](https://secure.travis-ci.org/defunkt/pystache.png "Travis CI current build status")
+![GitHub CI Workflow Status](https://img.shields.io/github/workflow/status/sarnold/pystache/ci)
 
 [Pystache](http://defunkt.github.com/pystache) is a Python
 implementation of [Mustache](http://mustache.github.com/). Mustache is a

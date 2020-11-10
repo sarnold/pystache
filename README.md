@@ -12,7 +12,7 @@ Pystache
 <!-- caption text shows up in the reST version converted by pandoc. -->
 ![GitHub CI Workflow Status](https://img.shields.io/github/workflow/status/sarnold/pystache/ci)
 
-This fork of Pystache is currently tested on Python 2.7 and Python 3.5 - 3.9 on Linux, Darwin, and Windows.
+This fork of Pystache is currently tested on Python 2.7 and Python 3.6+ on Linux, Darwin, and Windows.
 
 ![](http://defunkt.github.com/pystache/images/logo_phillips.png "mustachioed, monocled snake by David Phillips")
 

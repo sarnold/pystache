@@ -89,28 +89,9 @@ import os
 import shutil
 import sys
 
+from setuptools import setup
 
 py_version = sys.version_info
-
-# distutils does not seem to support the following setup() arguments.
-# It displays a UserWarning when setup() is passed those options:
-#
-#  * entry_points
-#  * install_requires
-#
-# distribute works with Python 2.3.5 and above:
-#
-#   http://packages.python.org/distribute/setuptools.html#building-and-distributing-packages-with-distribute
-#
-if py_version < (2, 3, 5):
-    # TODO: this might not work yet.
-    import distutils as dist
-    from distutils import core
-    setup = core.setup
-else:
-    import setuptools as dist
-    setup = dist.setup
-
 
 VERSION = '0.5.4-2'  # Also change in pystache/__init__.py.
 
@@ -363,9 +344,6 @@ def get_extra_args():
 def main(sys_argv):
 
     # TODO: use the logging module instead of printing.
-    # TODO: include the following in a verbose mode.
-    sys.stderr.write("pystache: using: version %s of %s\n" % (repr(dist.__version__), repr(dist)))
-
     command = sys_argv[-1]
 
     if command == 'publish':
@@ -386,8 +364,8 @@ def main(sys_argv):
           long_description=long_description,
           author='Chris Wanstrath',
           author_email='chris@ozmm.org',
-          maintainer='Chris Jerdonek',
-          maintainer_email='chris.jerdonek@gmail.com',
+          maintainer='Steve Arnold',
+          maintainer_email='nerdboy@gentoo.org',
           url='https://github.com/defunkt/pystache',
           install_requires=INSTALL_REQUIRES,
           packages=PACKAGES,

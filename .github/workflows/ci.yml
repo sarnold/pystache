@@ -40,7 +40,16 @@ jobs:
         pystache-test . ext/spec/specs
     - name: Check pkg builds
       run: |
+        python setup.py sdist
+        python setup.py bdist_wheel
+
+    - name: Check docs
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get -qq update
+        sudo apt-get install -y pandoc
         python -m pip install twine build
+        python setup.py prep
         python -m build -s
         twine check dist/*
         python setup.py bdist_wheel

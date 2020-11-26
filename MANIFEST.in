@@ -12,4 +12,5 @@ recursive-include pystache/tests *.mustache *.txt
 # of resources needed only for the web page hosted on GitHub (via the
 # gh-pages branch).
 exclude *.ini *travis*
-prune .git* gh
+prune gh
+prune .git*

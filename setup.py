@@ -200,7 +200,7 @@ def convert_md_to_rst(md_path, rst_temp_path):
 
     """
     # Pandoc uses the UTF-8 character encoding for both input and output.
-    command = "pandoc --write=rst --output=%s %s" % (rst_temp_path, md_path)
+    command = "pandoc -r markdown-auto_identifiers --write=rst --output=%s %s" % (rst_temp_path, md_path)
     print("converting with pandoc: %s to %s\n-->%s" % (md_path, rst_temp_path,
                                                        command))
 

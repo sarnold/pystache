@@ -4,23 +4,27 @@
 Pystache
 ========
 
-.. figure:: http://defunkt.github.com/pystache/images/logo_phillips.png
-   :alt: mustachioed, monocled snake by David Phillips
+.. figure:: https://img.shields.io/github/workflow/status/sarnold/pystache/ci
+   :alt: GitHub CI Workflow Status
 
-.. figure:: https://secure.travis-ci.org/defunkt/pystache.png
-   :alt: Travis CI current build status
+   GitHub CI Workflow Status
+
+This fork of Pystache is currently tested on Python 2.7 and Python 3.6+
+on Linux, Darwin, and Windows.
+
+|image0|
 
 `Pystache <http://defunkt.github.com/pystache>`__ is a Python
 implementation of `Mustache <http://mustache.github.com/>`__. Mustache
 is a framework-agnostic, logic-free templating system inspired by
 `ctemplate <http://code.google.com/p/google-ctemplate/>`__ and
 `et <http://www.ivan.fomichev.name/2008/05/erlang-template-engine-prototype.html>`__.
-Like ctemplate, Mustache "emphasizes separating logic from presentation:
-it is impossible to embed application logic in this template language."
+Like ctemplate, Mustache “emphasizes separating logic from presentation:
+it is impossible to embed application logic in this template language.”
 
 The `mustache(5) <http://mustache.github.com/mustache.5.html>`__ man
-page provides a good introduction to Mustache's syntax. For a more
-complete (and more current) description of Mustache's behavior, see the
+page provides a good introduction to Mustache’s syntax. For a more
+complete (and more current) description of Mustache’s behavior, see the
 official `Mustache spec <https://github.com/mustache/spec>`__.
 
 Pystache is `semantically versioned <http://semver.org>`__ and can be
@@ -31,7 +35,7 @@ of Pystache passes all tests in `version
 Requirements
 ------------
 
-Pystache is tested with--
+Pystache is tested with–
 
 -  Python 2.4 (requires simplejson `version
    2.0.9 <http://pypi.python.org/pypi/simplejson/2.0.9>`__ or earlier)
@@ -47,13 +51,13 @@ Pystache is tested with--
 `Distribute <http://packages.python.org/distribute/>`__ (the setuptools
 fork) is recommended over
 `setuptools <http://pypi.python.org/pypi/setuptools>`__, and is required
-in some cases (e.g. for Python 3 support). If you use
+in some cases (e.g. for Python 3 support). If you use
 `pip <http://www.pip-installer.org/>`__, you probably already satisfy
 this requirement.
 
 JSON support is needed only for the command-line interface and to run
 the spec tests. We require simplejson for earlier versions of Python
-since Python's `json <http://docs.python.org/library/json.html>`__
+since Python’s `json <http://docs.python.org/library/json.html>`__
 module was added in Python 2.6.
 
 For Python 2.4 we require an earlier version of simplejson since
@@ -63,7 +67,7 @@ as follows:
 
 ::
 
-    pip install 'simplejson<2.1.0'
+   pip install 'simplejson<2.1.0'
 
 Official support for Python 2.4 will end with Pystache version 0.6.0.
 
@@ -72,15 +76,15 @@ Install It
 
 ::
 
-    pip install pystache
+   pip install pystache
 
-And test it--
+And test it–
 
 ::
 
-    pystache-test
+   pystache-test
 
-To install and test from source (e.g. from GitHub), see the Develop
+To install and test from source (e.g. from GitHub), see the Develop
 section.
 
 Use It
@@ -88,43 +92,43 @@ Use It
 
 ::
 
-    >>> import pystache
-    >>> print pystache.render('Hi {{person}}!', {'person': 'Mom'})
-    Hi Mom!
+   >>> import pystache
+   >>> print pystache.render('Hi {{person}}!', {'person': 'Mom'})
+   Hi Mom!
 
 You can also create dedicated view classes to hold your view logic.
 
-Here's your view class (in .../examples/readme.py):
+Here’s your view class (in …/examples/readme.py):
 
 ::
 
-    class SayHello(object):
-        def to(self):
-            return "Pizza"
+   class SayHello(object):
+       def to(self):
+           return "Pizza"
 
 Instantiating like so:
 
 ::
 
-    >>> from pystache.tests.examples.readme import SayHello
-    >>> hello = SayHello()
+   >>> from pystache.tests.examples.readme import SayHello
+   >>> hello = SayHello()
 
-Then your template, say\_hello.mustache (by default in the same
-directory as your class definition):
+Then your template, say_hello.mustache (by default in the same directory
+as your class definition):
 
 ::
 
-    Hello, {{to}}!
+   Hello, {{to}}!
 
 Pull it together:
 
 ::
 
-    >>> renderer = pystache.Renderer()
-    >>> print renderer.render(hello)
-    Hello, Pizza!
+   >>> renderer = pystache.Renderer()
+   >>> print renderer.render(hello)
+   Hello, Pizza!
 
-For greater control over rendering (e.g. to specify a custom template
+For greater control over rendering (e.g. to specify a custom template
 directory), use the ``Renderer`` class like above. One can pass
 attributes to the Renderer class constructor or set them on a Renderer
 instance. To customize template loading on a per-view basis, subclass
@@ -138,18 +142,18 @@ You can also pre-parse a template:
 
 ::
 
-    >>> parsed = pystache.parse(u"Hey {{#who}}{{.}}!{{/who}}")
-    >>> print parsed
-    [u'Hey ', _SectionNode(key=u'who', index_begin=12, index_end=18, parsed=[_EscapeNode(key=u'.'), u'!'])]
+   >>> parsed = pystache.parse(u"Hey {{#who}}{{.}}!{{/who}}")
+   >>> print parsed
+   [u'Hey ', _SectionNode(key=u'who', index_begin=12, index_end=18, parsed=[_EscapeNode(key=u'.'), u'!'])]
 
 And then:
 
 ::
 
-    >>> print renderer.render(parsed, {'who': 'Pops'})
-    Hey Pops!
-    >>> print renderer.render(parsed, {'who': 'you'})
-    Hey you!
+   >>> print renderer.render(parsed, {'who': 'Pops'})
+   Hey Pops!
+   >>> print renderer.render(parsed, {'who': 'you'})
+   Hey you!
 
 Python 3
 --------
@@ -164,8 +168,8 @@ slightly differently between Python 2 and 3, as follows:
    ``sys.getdefaultencoding()``. However, this function can return
    different values under Python 2 and 3, even when run from the same
    system. Check your own system for the behavior on your system, or do
-   not rely on the defaults by passing in the encodings explicitly (e.g.
-   to the ``Renderer`` class).
+   not rely on the defaults by passing in the encodings explicitly
+   (e.g. to the ``Renderer`` class).
 
 Unicode
 -------
@@ -177,10 +181,10 @@ Internally, Pystache uses `only unicode
 strings <http://docs.python.org/howto/unicode.html#tips-for-writing-unicode-aware-programs>`__
 (``str`` in Python 3 and ``unicode`` in Python 2). For input, Pystache
 accepts both unicode strings and byte strings (``bytes`` in Python 3 and
-``str`` in Python 2). For output, Pystache's template rendering methods
+``str`` in Python 2). For output, Pystache’s template rendering methods
 return only unicode.
 
-Pystache's ``Renderer`` class supports a number of attributes to control
+Pystache’s ``Renderer`` class supports a number of attributes to control
 how Pystache converts byte strings to unicode on input. These include
 the ``file_encoding``, ``string_encoding``, and ``decode_errors``
 attributes.
@@ -192,41 +196,41 @@ other byte strings encountered during the rendering process into unicode
 (e.g. context values that are encoded byte strings).
 
 The ``decode_errors`` attribute is what the renderer passes as the
-``errors`` argument to Python's built-in unicode-decoding function
+``errors`` argument to Python’s built-in unicode-decoding function
 (``str()`` in Python 3 and ``unicode()`` in Python 2). The valid values
 for this argument are ``strict``, ``ignore``, and ``replace``.
 
-Each of these attributes can be set via the ``Renderer`` class's
+Each of these attributes can be set via the ``Renderer`` class’s
 constructor using a keyword argument of the same name. See the Renderer
-class's docstrings for further details. In addition, the
+class’s docstrings for further details. In addition, the
 ``file_encoding`` attribute can be controlled on a per-view basis by
 subclassing the ``TemplateSpec`` class. When not specified explicitly,
-these attributes default to values set in Pystache's ``defaults``
+these attributes default to values set in Pystache’s ``defaults``
 module.
 
 Develop
 -------
 
-To test from a source distribution (without installing)--
+To test from a source distribution (without installing)–
 
 ::
 
-    python test_pystache.py
+   python test_pystache.py
 
 To test Pystache with multiple versions of Python (with a single
 command!), you can use `tox <http://pypi.python.org/pypi/tox>`__:
 
 ::
 
-    pip install 'virtualenv<1.8'  # Version 1.8 dropped support for Python 2.4.
-    pip install 'tox<1.4'  # Version 1.4 dropped support for Python 2.4.
-    tox
+   pip install 'virtualenv<1.8'  # Version 1.8 dropped support for Python 2.4.
+   pip install 'tox<1.4'  # Version 1.4 dropped support for Python 2.4.
+   tox
 
-If you do not have all Python versions listed in ``tox.ini``--
+If you do not have all Python versions listed in ``tox.ini``–
 
 ::
 
-    tox -e py26,py32  # for example
+   tox -e py26,py32  # for example
 
 The source distribution tests also include doctests and tests from the
 Mustache spec. To include tests from the Mustache spec in your test
@@ -234,24 +238,24 @@ runs:
 
 ::
 
-    git submodule init
-    git submodule update
+   git submodule init
+   git submodule update
 
-The test harness parses the spec's (more human-readable) yaml files if
+The test harness parses the spec’s (more human-readable) yaml files if
 `PyYAML <http://pypi.python.org/pypi/PyYAML>`__ is present. Otherwise,
-it parses the json files. To install PyYAML--
+it parses the json files. To install PyYAML–
 
 ::
 
-    pip install pyyaml
+   pip install pyyaml
 
 To run a subset of the tests, you can use
 `nose <http://somethingaboutorange.com/mrl/projects/nose/0.11.1/testing.html>`__:
 
 ::
 
-    pip install nose
-    nosetests --tests pystache/tests/test_context.py:GetValueTests.test_dictionary__key_present
+   pip install nose
+   nosetests --tests pystache/tests/test_context.py:GetValueTests.test_dictionary__key_present
 
 Using Python 3 with Pystache from source
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -260,11 +264,11 @@ Pystache is written in Python 2 and must be converted to Python 3 prior
 to using it with Python 3. The installation process (and tox) do this
 automatically.
 
-To convert the code to Python 3 manually (while using Python 3)--
+To convert the code to Python 3 manually (while using Python 3)–
 
 ::
 
-    python setup.py build
+   python setup.py build
 
 This writes the converted code to a subdirectory called ``build``. By
 design, Python 3 builds
@@ -273,18 +277,18 @@ be created from Python 2.
 
 To convert the code without using setup.py, you can use
 `2to3 <http://docs.python.org/library/2to3.html>`__ as follows (two
-steps)--
+steps)–
 
 ::
 
-    2to3 --write --nobackups --no-diffs --doctests_only pystache
-    2to3 --write --nobackups --no-diffs pystache
+   2to3 --write --nobackups --no-diffs --doctests_only pystache
+   2to3 --write --nobackups --no-diffs pystache
 
 This converts the code (and doctests) in place.
 
 To ``import pystache`` from a source distribution while using Python 3,
 be sure that you are importing from a directory containing a converted
-version of the code (e.g. from the ``build`` directory after
+version of the code (e.g. from the ``build`` directory after
 converting), and not from the original (unconverted) source directory.
 Otherwise, you will get a syntax error. You can help prevent this by not
 running the Python IDE from the project directory when importing
@@ -302,21 +306,40 @@ Credits
 
 ::
 
-    >>> context = { 'author': 'Chris Wanstrath', 'maintainer': 'Chris Jerdonek' }
-    >>> print pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}", context)
-    Author: Chris Wanstrath
-    Maintainer: Chris Jerdonek
+   >>> context = { 'author': 'Chris Wanstrath', 'maintainer': 'Chris Jerdonek' }
+   >>> print pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}", context)
+   Author: Chris Wanstrath
+   Maintainer: Chris Jerdonek
 
 Pystache logo by `David Phillips <http://davidphillips.us/>`__ is
 licensed under a `Creative Commons Attribution-ShareAlike 3.0 Unported
 License <http://creativecommons.org/licenses/by-sa/3.0/deed.en_US>`__.
-|image0|
+|image1|
 
 History
 =======
 
-**Note:** Official support for Python 2.4 will end with Pystache version
+**Note:** Official support for Python 2.7 will end with Pystache version
 0.6.0.
+
+0.5.5 (2020-12-16)
+------------------
+
+-  add release.yml to CI, test env settings
+-  fix bogus commit message, update versions and tox cf
+-  add post-test steps for building pkgs with/without doc updates
+-  add CI build check, fix MANIFEST.in pruning
+
+0.5.4-2 (2020-11-09)
+--------------------
+
+-  Merge pull request #1 from sarnold/rebase-up
+-  Bugfix: test_specloader.py: fix test_find__with_directory on other
+   OSs
+-  Bugfix: pystache/loader.py: remove stray windows line-endings
+-  fix crufty (and insecure) http urls
+-  Bugfix: modernize python versions (keep py27) and fix spec_test load
+   cmd
 
 0.5.4 (2014-07-11)
 ------------------
@@ -326,11 +349,11 @@ History
 0.5.3 (2012-11-03)
 ------------------
 
--  Added ability to customize string coercion (e.g. to have None render
+-  Added ability to customize string coercion (e.g. to have None render
    as ``''``) (issue #130).
--  Added Renderer.render\_name() to render a template by name (issue
+-  Added Renderer.render_name() to render a template by name (issue
    #122).
--  Added TemplateSpec.template\_path to specify an absolute path to a
+-  Added TemplateSpec.template_path to specify an absolute path to a
    template (issue #41).
 -  Added option of raising errors on missing tags/partials:
    ``Renderer(missing_tags='strict')`` (issue #110).
@@ -350,10 +373,10 @@ History
 -  Bugfix: lambda section values can now return non-ascii, non-unicode
    strings (issue #118).
 -  Bugfix: allow ``test_pystache.py`` and ``tox`` to pass when run from
-   a downloaded sdist (i.e. without the spec test directory).
+   a downloaded sdist (i.e. without the spec test directory).
 -  Convert HISTORY and README files from reST to Markdown.
 -  More robust handling of byte strings in Python 3.
--  Added Creative Commons license for David Phillips's logo.
+-  Added Creative Commons license for David Phillips’s logo.
 
 0.5.2 (2012-05-03)
 ------------------
@@ -373,7 +396,7 @@ History
 -  Added support for Python 3.1 and 3.2.
 -  Added tox support to test multiple Python versions.
 -  Added test script entry point: pystache-test.
--  Added \_\_version\_\_ package attribute.
+-  Added \__version_\_ package attribute.
 -  Test harness now supports both YAML and JSON forms of Mustache spec.
 -  Test harness no longer requires nose.
 
@@ -399,7 +422,7 @@ Highlights:
 -  Added TemplateSpec class: template rendering can be specified on a
    per-view basis by subclassing from TemplateSpec.
 -  Introduced separation of concerns and removed circular dependencies
-   (e.g. between Template and View classes, cf. `issue
+   (e.g. between Template and View classes, cf. `issue
    #13 <https://github.com/defunkt/pystache/issues/13>`__).
 -  Unicode now used consistently throughout the rendering process.
 -  Expanded test coverage: nosetests now runs doctests and ~105 test
@@ -407,12 +430,12 @@ Highlights:
    to ~315).
 -  Added a rudimentary benchmarking script to gauge performance while
    refactoring.
--  Extensive documentation added (e.g. docstrings).
+-  Extensive documentation added (e.g. docstrings).
 
 Other changes:
 
 -  Added a command-line interface. [vrde]
--  The main rendering class now accepts a custom partial loader (e.g. a
+-  The main rendering class now accepts a custom partial loader (e.g. a
    dictionary) and a custom escape function.
 -  Non-ascii characters in str strings are now supported while
    rendering.
@@ -455,7 +478,7 @@ Bug fixes:
 0.3.0 (2010-05-03)
 ------------------
 
--  View.template\_path can now hold a list of path
+-  View.template_path can now hold a list of path
 -  Add {{& blah}} as an alias for {{{ blah }}}
 -  Higher Order Sections
 -  Inverted sections
@@ -464,7 +487,7 @@ Bug fixes:
 ------------------
 
 -  Bugfix: Methods returning False or None are not rendered
--  Bugfix: Don't render an empty string when a tag's value is 0.
+-  Bugfix: Don’t render an empty string when a tag’s value is 0.
    [enaeseth]
 -  Add support for using non-callables as View attributes.
    [joshthecoder]
@@ -476,7 +499,7 @@ Bug fixes:
 0.1.1 (2009-11-13)
 ------------------
 
--  Ensure we're dealing with strings, always
+-  Ensure we’re dealing with strings, always
 -  Tests can be run by executing the test file directly
 
 0.1.0 (2009-11-12)
@@ -493,7 +516,7 @@ Copyright (c) 2009 Chris Wanstrath
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
+“Software”), to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
 distribute, sublicense, and/or sell copies of the Software, and to
 permit persons to whom the Software is furnished to do so, subject to
@@ -502,7 +525,7 @@ the following conditions:
 The above copyright notice and this permission notice shall be included
 in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
 OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
@@ -510,4 +533,5 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-.. |image0| image:: http://i.creativecommons.org/l/by-sa/3.0/88x31.png
+.. |image0| image:: https://defunkt.github.com/pystache/images/logo_phillips.png
+.. |image1| image:: https://i.creativecommons.org/l/by-sa/3.0/88x31.png

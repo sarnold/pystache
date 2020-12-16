@@ -3,6 +3,14 @@ History
 
 **Note:** Official support for Python 2.7 will end with Pystache version 0.6.0.
 
+0.5.5 (2020-12-16)
+------------------
+
+-   add release.yml to CI, test env settings
+-   fix bogus commit message, update versions and tox cf
+-   add post-test steps for building pkgs with/without doc updates
+-   add CI build check, fix MANIFEST.in pruning
+
 0.5.4-2 (2020-11-09)
 --------------------
 

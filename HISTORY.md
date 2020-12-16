@@ -8,7 +8,7 @@ History
 
 -   Merge pull request #1 from sarnold/rebase-up
 -   Bugfix: test_specloader.py: fix test_find__with_directory on other OSs
--   Bugfix: pystache/loader.py: remove stray '\r' (on windows only)
+-   Bugfix: pystache/loader.py: remove stray windows line-endings
 -   fix crufty (and insecure) http urls
 -   Bugfix: modernize python versions (keep py27) and fix spec_test load cmd
 

@@ -93,7 +93,7 @@ from setuptools import setup
 
 py_version = sys.version_info
 
-VERSION = '0.5.4-2'  # Also change in pystache/__init__.py.
+VERSION = '0.5.5'  # Also change in pystache/__init__.py.
 
 FILE_ENCODING = 'utf-8'
 
@@ -107,20 +107,19 @@ TEMP_EXTENSION = '.temp'
 
 PREP_COMMAND = 'prep'
 
-CLASSIFIERS = (
+CLASSIFIERS = [
     'Development Status :: 4 - Beta',
     'License :: OSI Approved :: MIT License',
     'Programming Language :: Python',
     'Programming Language :: Python :: 2',
     'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: Implementation :: PyPy',
-)
+]
 
 # Comments in reST begin with two dots.
 RST_LONG_DESCRIPTION_INTRO = """\
@@ -362,6 +361,7 @@ def main(sys_argv):
           license='MIT',
           description='Mustache for Python',
           long_description=long_description,
+          long_description_content_type='text/x-rst',
           author='Chris Wanstrath',
           author_email='chris@ozmm.org',
           maintainer='Steve Arnold',

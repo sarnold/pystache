@@ -32,10 +32,9 @@ jobs:
           pip install git+https://github.com/freepn/gitchangelog@3.0.4-4
 
       - name: Generate changes file
-        env:
-          GITCHANGELOG_CONFIG_FILENAME=$(get-rcpath)
         run: |
-          bash -c 'gitchangelog $(git tag -l | tail -n2 | head -n1)..${{ env.VERSION }} > CHANGES.md'
+          bash -c 'export GITCHANGELOG_CONFIG_FILENAME=$(get-rcpath); \
+          gitchangelog $(git tag -l | tail -n2 | head -n1)..${{ env.VERSION }} > CHANGES.md'
 
       - name: Create draft release
         id: create_release

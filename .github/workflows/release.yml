@@ -34,7 +34,7 @@ jobs:
       - name: Generate changes file
         run: |
           bash -c 'export GITCHANGELOG_CONFIG_FILENAME=$(get-rcpath); \
-          gitchangelog $(git tag -l | tail -n2 | head -n1)..${{ env.VERSION }} > CHANGES.md'
+            gitchangelog $(git tag --sort=taggerdate | tail -n2 | head -n1)..${{ env.VERSION }} > CHANGES.md'
 
       - name: Create draft release
         id: create_release

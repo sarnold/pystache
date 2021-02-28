@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  wheels:
+  build:
 
     runs-on: ${{ matrix.os }}
     defaults:
@@ -54,18 +54,29 @@ jobs:
 
   check_artifact:
     name: Check wheel artifact
-    needs: [wheels]
-    runs-on: ubuntu-20.04
+    needs: [build]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONIOENCODING: utf-8
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.6, 3.8, 3.9]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
         with:
-          fetch-depth: 0
+          python-version: ${{ matrix.python-version }}
 
       # download all artifacts to project dir
       - uses: actions/download-artifact@v2
 
       - name: Check wheel install
         run: |
-          ls . wheels/
-
+          bash -c 'export WHL=$(ls wheels/*.whl); python -m pip install $WHL'
+          pystache-test

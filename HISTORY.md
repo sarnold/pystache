@@ -3,6 +3,13 @@ History
 
 **Note:** Official support for Python 2.7 will end with Pystache version 0.6.0.
 
+0.5.6 (2021-02-28)
+------------------
+
+-   Use correct wheel name in release workflow, limit wheels
+-   Add install check/test of downloaded wheel
+-   Update/add ci workflows and tox cfg, bump to next dev0 version
+
 0.5.5 (2020-12-16)
 ------------------
 

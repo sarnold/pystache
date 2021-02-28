@@ -93,7 +93,7 @@ from setuptools import setup
 
 py_version = sys.version_info
 
-VERSION = '0.5.5'  # Also change in pystache/__init__.py.
+VERSION = '0.5.6.dev0'  # Also change in pystache/__init__.py.
 
 FILE_ENCODING = 'utf-8'
 

@@ -287,22 +287,7 @@ Run the following command and commit the changes--
     os.system('python setup.py sdist upload')
 
 
-# We use the package simplejson for older Python versions since Python
-# does not contain the module json before 2.6:
-#
-#   http://docs.python.org/library/json.html
-#
-# Moreover, simplejson stopped officially support for Python 2.4 in version 2.1.0:
-#
-#   https://github.com/simplejson/simplejson/blob/master/CHANGES.txt
-#
-requires = []
-if py_version < (2, 5):
-    requires.append('simplejson<2.1')
-elif py_version < (2, 6):
-    requires.append('simplejson')
-
-INSTALL_REQUIRES = requires
+INSTALL_REQUIRES = []
 
 # TODO: decide whether to use find_packages() instead.  I'm not sure that
 #   find_packages() is available with distutils, for example.

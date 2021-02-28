@@ -91,4 +91,4 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            wheels/gitchangelog*.whl
+            wheels/pystache*.whl

@@ -406,7 +406,9 @@ class RenderTests(unittest.TestCase, AssertStringMixin, AssertExceptionMixin):
         partials = {'partial': 'unescaped: {{{foo}}} escaped: {{foo}}'}
         context = {'foo': '<'}
 
-        self._assert_render('unescaped: < escaped: &lt;', template, context, engine=engine, partials=partials)
+        self._assert_render(
+            'unescaped: < escaped: &lt;',
+            template, context, engine=engine, partials=partials)
 
     ## Test cases related specifically to lambdas.
 

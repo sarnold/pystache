@@ -77,7 +77,7 @@ class PystacheTests(unittest.TestCase):
 
     def test_unicode(self):
         template = 'Name: {{name}}; Age: {{age}}'
-        context = {'name': 'Henri Poincaré', 'age': 156 }
+        context = {'name': 'Henri Poincaré', 'age': 156}
         self._assert_rendered('Name: Henri Poincaré; Age: 156', template, context)
 
     def test_sections(self):

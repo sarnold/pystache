@@ -30,8 +30,8 @@ def parse(template, delimiters=None):
 
     Examples:
 
-    >>> parsed = parse(u"Hey {{#who}}{{name}}!{{/who}}")
-    >>> print str(parsed).replace('u', '')  # This is a hack to get the test to pass both in Python 2 and 3.
+    >>> parsed = parse("Hey {{#who}}{{name}}!{{/who}}")
+    >>> print(str(parsed).replace('u', ''))  # This is a hack to get the test to pass both in Python 2 and 3.
     ['Hey ', _SectionNode(key='who', index_begin=12, index_end=21, parsed=[_EscapeNode(key='name'), '!'])]
 
     """
@@ -376,3 +376,4 @@ class _Parser(object):
             return _InvertedNode(tag_key, parsed_section)
 
         raise Exception("Invalid symbol for section tag: %s" % repr(tag_type))
+

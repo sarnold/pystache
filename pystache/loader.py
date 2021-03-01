@@ -120,8 +120,8 @@ class Loader(object):
         if encoding is None:
             encoding = self.file_encoding
         if platform.system() == "Windows":
-            return self.unicode(b, encoding).replace('\r', '')
-        return self.unicode(b, encoding)
+            return self.str(b, encoding).replace('\r', '')
+        return self.str(b, encoding)
 
     def load_file(self, file_name):
         """

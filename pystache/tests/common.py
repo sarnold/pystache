@@ -228,10 +228,10 @@ class Attachable(object):
     """
     def __init__(self, **kwargs):
         self.__args__ = kwargs
-        for arg, value in list(kwargs.items()):
+        for arg, value in kwargs.items():
             setattr(self, arg, value)
 
     def __repr__(self):
         return "%s(%s)" % (self.__class__.__name__,
                            ", ".join("%s=%s" % (k, repr(v))
-                                     for k, v in list(self.__args__.items())))
+                                     for k, v in self.__args__.items()))

@@ -219,7 +219,7 @@ class RendererTests(unittest.TestCase, AssertStringMixin):
 
         renderer.decode_errors = "replace"
         # U+FFFD is the official Unicode replacement character.
-        self.assertEqual(renderer.str(b), 'd\ufffd\ufffdf')
+        self.assertEqual(renderer.str(b), u'd\ufffd\ufffdf')
 
     ## Test the _make_loader() method.
 

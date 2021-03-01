@@ -458,3 +458,4 @@ class Renderer(object):
         # Otherwise, we assume the template is an object.
 
         return self._render_object(template, *context, **kwargs)
+

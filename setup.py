@@ -91,8 +91,6 @@ import sys
 
 from setuptools import setup
 
-py_version = sys.version_info
-
 VERSION = '0.5.6'  # Also change in pystache/__init__.py.
 
 FILE_ENCODING = 'utf-8'
@@ -111,8 +109,6 @@ CLASSIFIERS = [
     'Development Status :: 4 - Beta',
     'License :: OSI Approved :: MIT License',
     'Programming Language :: Python',
-    'Programming Language :: Python :: 2',
-    'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
@@ -287,8 +283,6 @@ Run the following command and commit the changes--
     os.system('python setup.py sdist upload')
 
 
-INSTALL_REQUIRES = []
-
 # TODO: decide whether to use find_packages() instead.  I'm not sure that
 #   find_packages() is available with distutils, for example.
 PACKAGES = [
@@ -300,29 +294,6 @@ PACKAGES = [
     'pystache.tests.data.locator',
     'pystache.tests.examples',
 ]
-
-
-# The purpose of this function is to follow the guidance suggested here:
-#
-#   http://packages.python.org/distribute/python3.html#note-on-compatibility-with-setuptools
-#
-# The guidance is for better compatibility when using setuptools (e.g. with
-# earlier versions of Python 2) instead of Distribute, because of new
-# keyword arguments to setup() that setuptools may not recognize.
-def get_extra_args():
-    """
-    Return a dictionary of extra args to pass to setup().
-
-    """
-    extra = {}
-    # TODO: it might be more correct to check whether we are using
-    #   Distribute instead of setuptools, since use_2to3 doesn't take
-    #   effect when using Python 2, even when using Distribute.
-    if py_version >= (3, ):
-        # Causes 2to3 to be run during the build step.
-        extra['use_2to3'] = True
-
-    return extra
 
 
 def main(sys_argv):
@@ -339,7 +310,6 @@ def main(sys_argv):
 
     long_description = read(RST_DESCRIPTION_PATH)
     template_files = ['*.mustache', '*.txt']
-    extra_args = get_extra_args()
 
     setup(name='pystache',
           version=VERSION,
@@ -352,7 +322,6 @@ def main(sys_argv):
           maintainer='Steve Arnold',
           maintainer_email='nerdboy@gentoo.org',
           url='https://github.com/defunkt/pystache',
-          install_requires=INSTALL_REQUIRES,
           packages=PACKAGES,
           package_data = {
               # Include template files so tests can be run.
@@ -367,7 +336,6 @@ def main(sys_argv):
             ],
           },
           classifiers = CLASSIFIERS,
-          **extra_args
     )
 
 

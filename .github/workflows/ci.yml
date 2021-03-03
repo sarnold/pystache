@@ -46,11 +46,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install tox tox-gh-actions
 
-    - name: Test with pystache-test
-      run: |
-        python setup.py install
-        pystache-test . ext/spec/specs
-
     - name: Run tests with coverage
       run: |
         tox
@@ -61,6 +56,10 @@ jobs:
       uses: codecov/codecov-action@v1
       with:
         env_vars: OS,PYTHON
+
+    - name: Test with specs and pystache-test
+      run: |
+        tox -e setup . ext/spec/specs
 
     - name: Check pkg builds
       run: |

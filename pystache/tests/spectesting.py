@@ -62,7 +62,7 @@ def get_spec_tests(spec_test_dir):
 
     """
     # TODO: use logging module instead.
-    print(("pystache: spec tests: using %s" % _get_parser_info()))
+    print("pystache: spec tests: using %s" % _get_parser_info())
 
     cases = []
 
@@ -237,7 +237,7 @@ def parse(u):
         value = loader.construct_mapping(node)
         return eval(value['python'], {})
 
-    yaml.add_constructor(u'!code', code_constructor)
+    yaml.add_constructor('!code', code_constructor)
     return yaml.full_load(u)
 
 

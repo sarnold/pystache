@@ -10,11 +10,22 @@ Pystache
 <!-- -->
 <!-- We leave the leading brackets empty here.  Otherwise, unwanted -->
 <!-- caption text shows up in the reST version converted by pandoc. -->
-![GitHub CI Workflow Status](https://img.shields.io/github/workflow/status/sarnold/pystache/ci)
+[![ci](https://github.com/sarnold/pystache/actions/workflows/ci.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/ci.yml)
+[![Wheels](https://github.com/sarnold/pystache/actions/workflows/wheels.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/wheels.yml)
+[![Release](https://github.com/sarnold/pystache/actions/workflows/release.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/release.yml)
+[![Python](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
 
-This fork of Pystache is currently tested on Python 2.7 and Python 3.6+ on Linux, Darwin, and Windows.
+[![GitHub release](https://img.shields.io/github/v/release/sarnold/pystache?include_prereleases)](https://github.com/sarnold/pystache/releases/latest)
+[![License](https://img.shields.io/github/license/sarnold/pystache)](https://github.com/sarnold/pystache/blob/master/LICENSE)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a8fa1bf4638bfc6581b6/maintainability)](https://codeclimate.com/github/sarnold/pystache/maintainability)
+[![codecov](https://codecov.io/gh/sarnold/pystache/branch/master/graph/badge.svg?token=5PZNMZBI6K)](https://codecov.io/gh/sarnold/pystache)
 
-![](http://defunkt.github.com/pystache/images/logo_phillips.png "mustachioed, monocled snake by David Phillips")
+
+
+This updated fork of Pystache is currently tested on Python 3.6+ on Linux,
+Darwin, and Windows (Python 2.7 support has been removed).
+
+![](gh/images/logo_phillips_small.png "mustachioed, monocled snake by David Phillips")
 
 [Pystache](http://defunkt.github.com/pystache) is a Python
 implementation of [Mustache](http://mustache.github.com/). Mustache is a
@@ -65,16 +76,37 @@ Requirements
 
 Pystache is tested with--
 
--   Python 3.1
--   Python 3.2
--   Python 3.3
+-   Python 3.6
+-   Python 3.7
+-   Python 3.8
+-   Python 3.9
+
+[Distribute](http://packages.python.org/distribute/) (the setuptools fork)
+is recommended over [setuptools](http://pypi.python.org/pypi/setuptools),
+and is required in some cases (e.g. for Python 3 support).
+If you use [pip](http://www.pip-installer.org/), you probably already satisfy
+this requirement.
+
+JSON support is needed only for the command-line interface and to run
+the spec tests. We require simplejson for earlier versions of Python
+since Python's [json](http://docs.python.org/library/json.html) module
+was added in Python 2.6.
+
+For Python 2.4 we require an earlier version of simplejson since
+simplejson stopped officially supporting Python 2.4 in simplejson
+version 2.1.0. Earlier versions of simplejson can be installed manually,
+as follows:
+
+    pip install 'simplejson<2.1.0'
+
+Official support for Python 2.4 will end with Pystache version 0.6.0.
 
 Install It
 ----------
 
     pip install pystache
 
-And test it--
+And test it:
 
     pystache-test
 
@@ -174,15 +206,16 @@ To test from a source distribution (without installing)--
     python test_pystache.py
 
 To test Pystache with multiple versions of Python (with a single
-command!), you can use [tox](https://pypi.python.org/pypi/tox):
+command!) and different platforms, you can use [tox](http://pypi.python.org/pypi/tox):
 
-    pip install virtualenv
     pip install tox
-    tox
+    tox -e setup
 
-If you do not have all Python versions listed in `tox.ini`--
+To run tests on multiple versions with coverage, run:
 
-    tox -e py31,py32  # for example
+    tox -e py38-linux,py39-linux  # for example
+
+(substitute your platform above, eg, "macos" or "windows")
 
 The source distribution tests also include doctests and tests from the
 Mustache spec. To include tests from the Mustache spec in your test
@@ -204,10 +237,10 @@ To run a subset of the tests, you can use
     nosetests --tests pystache/tests/test_context.py:GetValueTests.test_dictionary__key_present
 
 
-Mailing List
-------------
+Mailing List (old)
+------------------
 
-There is a [mailing list](https://librelist.com/browser/pystache/). Note
+There is(was) a [mailing list](http://librelist.com/browser/pystache/). Note
 that there is a bit of a delay between posting a message and seeing it
 appear in the mailing list archive.
 

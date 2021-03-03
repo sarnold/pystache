@@ -406,7 +406,9 @@ class RenderTests(unittest.TestCase, AssertStringMixin, AssertExceptionMixin):
         partials = {'partial': 'unescaped: {{{foo}}} escaped: {{foo}}'}
         context = {'foo': '<'}
 
-        self._assert_render('unescaped: < escaped: &lt;', template, context, engine=engine, partials=partials)
+        self._assert_render(
+            'unescaped: < escaped: &lt;',
+            template, context, engine=engine, partials=partials)
 
     ## Test cases related specifically to lambdas.
 
@@ -577,7 +579,7 @@ class RenderTests(unittest.TestCase, AssertStringMixin, AssertExceptionMixin):
         context = {'iterable': (i for i in range(3))}  # type 'generator'
         self._assert_render('012', template, context)
 
-        context = {'iterable': list(range(4))}  # type 'xrange'
+        context = {'iterable': range(4)}  # type 'xrange'
         self._assert_render('0123', template, context)
 
         d = {'foo': 0, 'bar': 0}
@@ -587,7 +589,7 @@ class RenderTests(unittest.TestCase, AssertStringMixin, AssertExceptionMixin):
         #   itervalues() are called with no intervening modifications to
         #   the dictionary, the lists will directly correspond."
         expected = ''.join(list(d.keys()))
-        context = {'iterable': iter(list(d.keys()))}  # type 'dictionary-keyiterator'
+        context = {'iterable': iter(d.keys())}  # type 'dictionary-keyiterator'
         self._assert_render(expected, template, context)
 
     def test_section__lambda__tag_in_output(self):

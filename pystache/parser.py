@@ -31,7 +31,7 @@ def parse(template, delimiters=None):
     Examples:
 
     >>> parsed = parse("Hey {{#who}}{{name}}!{{/who}}")
-    >>> print(str(parsed).replace('u', ''))  # This is a hack to get the test to pass both in Python 2 and 3.
+    >>> print(str(parsed).replace('u', ''))  # This is an old hack.
     ['Hey ', _SectionNode(key='who', index_begin=12, index_end=21, parsed=[_EscapeNode(key='name'), '!'])]
 
     """

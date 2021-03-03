@@ -10,28 +10,33 @@ source:
 
 build:
   number: 0
-  # noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv
+  noarch: python
+  entry_points:
+    - pystache = pystache.commands.render:main
+    - pystache-test = pystache.commands.test:main
 
 requirements:
-  host:
+  build:
     - python
-    - pip
+    - setuptools
+
   run:
     - python
 
 test:
   imports:
     - pystache
-  requires:
-    - pip
+    - pystache.commands
+    - pystache.tests
+    - pystache.tests.data
+    - pystache.tests.data.locator
+    - pystache.tests.examples
+
   commands:
-    - export "PYTHONIOENCODING=utf8"  # [unix]
-    - set "PYTHONIOENCODING=utf8"  # [win]
-    - python -m pip check
-    - python test_pystache.py
-  source_files:
-    - test_pystache.py
+    - pystache --help
+    - pystache-test
+
 
 about:
   home: https://github.com/sarnold/pystache

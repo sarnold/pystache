@@ -56,7 +56,7 @@ Pystache is tested with--
 -   Python 3.7
 -   Python 3.8
 -   Python 3.9
--   Conda-forge (py36-py39)
+-   Conda (py36-py39)
 
 [Distribute](http://packages.python.org/distribute/) (the setuptools fork)
 is no longer required over [setuptools](http://pypi.python.org/pypi/setuptools),
@@ -215,6 +215,10 @@ The test harness parses the spec's (more human-readable) yaml files if
 parses the json files. To install PyYAML--
 
     pip install pyyaml
+
+Once the submodule is available, you can run the full test set with:
+
+    tox -e setup . ext/spec/specs
 
 To run a subset of the tests, you can use
 [nose](http://somethingaboutorange.com/mrl/projects/nose/0.11.1/testing.html):

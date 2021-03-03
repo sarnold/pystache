@@ -1,0 +1,41 @@
+{% set name = "pystache" %}
+{% set version = "0.6.0.dev0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  imports:
+    - {{ name|lower }}
+  requires:
+    - pip
+  commands:
+    - python -m pip check
+    - pystache-test
+
+about:
+  home: https://github.com/sarnold/pystache
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: Mustache for Python
+
+extra:
+  recipe-maintainers:
+    - sarnold

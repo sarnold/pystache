@@ -22,9 +22,10 @@ Pystache
 
 
 
-This fork of Pystache is currently tested on Python 3.6+ on Linux, Darwin, and Windows (Python 2.7 support has been removed).
+This updated fork of Pystache is currently tested on Python 3.6+ on Linux,
+Darwin, and Windows (Python 2.7 support has been removed).
 
-![](http://defunkt.github.com/pystache/images/logo_phillips_small.png "mustachioed, monocled snake by David Phillips")
+![](gh/images/logo_phillips_small.png "mustachioed, monocled snake by David Phillips")
 
 [Pystache](http://defunkt.github.com/pystache) is a Python
 implementation of [Mustache](http://mustache.github.com/). Mustache is a
@@ -50,16 +51,10 @@ Requirements
 
 Pystache is tested with--
 
--   Python 2.4 (requires simplejson [version
-    2.0.9](http://pypi.python.org/pypi/simplejson/2.0.9) or earlier)
--   Python 2.5 (requires
-    [simplejson](http://pypi.python.org/pypi/simplejson/))
--   Python 2.6
--   Python 2.7
--   Python 3.1
--   Python 3.2
--   Python 3.3
--   [PyPy](http://pypy.org/)
+-   Python 3.6
+-   Python 3.7
+-   Python 3.8
+-   Python 3.9
 
 [Distribute](http://packages.python.org/distribute/) (the setuptools fork)
 is recommended over [setuptools](http://pypi.python.org/pypi/setuptools),
@@ -206,15 +201,16 @@ To test from a source distribution (without installing)--
     python test_pystache.py
 
 To test Pystache with multiple versions of Python (with a single
-command!), you can use [tox](http://pypi.python.org/pypi/tox):
+command!) and different platforms, you can use [tox](http://pypi.python.org/pypi/tox):
 
-    pip install 'virtualenv<1.8'  # Version 1.8 dropped support for Python 2.4.
-    pip install 'tox<1.4'  # Version 1.4 dropped support for Python 2.4.
-    tox
+    pip install tox
+    tox -e setup
 
-If you do not have all Python versions listed in `tox.ini`--
+To run tests on multiple versions with coverage, run:
 
-    tox -e py26,py32  # for example
+    tox -e py38-linux,py39-linux  # for example
+
+(substitute your platform above, eg, "macos" or "windows")
 
 The source distribution tests also include doctests and tests from the
 Mustache spec. To include tests from the Mustache spec in your test
@@ -235,41 +231,11 @@ To run a subset of the tests, you can use
     pip install nose
     nosetests --tests pystache/tests/test_context.py:GetValueTests.test_dictionary__key_present
 
-### Using Python 3 with Pystache from source
 
-Pystache is written in Python 2 and must be converted to Python 3 prior to
-using it with Python 3.  The installation process (and tox) do this
-automatically.
+Mailing List (old)
+------------------
 
-To convert the code to Python 3 manually (while using Python 3)--
-
-    python setup.py build
-
-This writes the converted code to a subdirectory called `build`.
-By design, Python 3 builds
-[cannot](https://bitbucket.org/tarek/distribute/issue/292/allow-use_2to3-with-python-2)
-be created from Python 2.
-
-To convert the code without using setup.py, you can use
-[2to3](http://docs.python.org/library/2to3.html) as follows (two steps)--
-
-    2to3 --write --nobackups --no-diffs --doctests_only pystache
-    2to3 --write --nobackups --no-diffs pystache
-
-This converts the code (and doctests) in place.
-
-To `import pystache` from a source distribution while using Python 3, be
-sure that you are importing from a directory containing a converted
-version of the code (e.g. from the `build` directory after converting),
-and not from the original (unconverted) source directory.  Otherwise, you will
-get a syntax error.  You can help prevent this by not running the Python
-IDE from the project directory when importing Pystache while using Python 3.
-
-
-Mailing List
-------------
-
-There is a [mailing list](http://librelist.com/browser/pystache/). Note
+There is(was) a [mailing list](http://librelist.com/browser/pystache/). Note
 that there is a bit of a delay between posting a message and seeing it
 appear in the mailing list archive.
 

@@ -28,7 +28,7 @@ it on the PyPI project page.  If PyPI finds any issues, it will render it
 instead as plain-text, which we do not want.
 
 To check in advance that PyPI will accept and parse the reST file as HTML,
-you can use the rst2html program installed by the docutils package
+you can use the rst2html.py program installed by the docutils package
 (http://docutils.sourceforge.net/).  To install docutils:
 
     $ pip install docutils
@@ -91,8 +91,6 @@ import sys
 
 from setuptools import setup
 
-VERSION = '0.5.6'  # Also change in pystache/__init__.py.
-
 FILE_ENCODING = 'utf-8'
 
 README_PATH = 'README.md'
@@ -104,18 +102,6 @@ RST_DESCRIPTION_PATH = 'setup_description.rst'
 TEMP_EXTENSION = '.temp'
 
 PREP_COMMAND = 'prep'
-
-CLASSIFIERS = [
-    'Development Status :: 4 - Beta',
-    'License :: OSI Approved :: MIT License',
-    'Programming Language :: Python',
-    'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
-    'Programming Language :: Python :: Implementation :: PyPy',
-]
 
 # Comments in reST begin with two dots.
 RST_LONG_DESCRIPTION_INTRO = """\
@@ -311,17 +297,8 @@ def main(sys_argv):
     long_description = read(RST_DESCRIPTION_PATH)
     template_files = ['*.mustache', '*.txt']
 
-    setup(name='pystache',
-          version=VERSION,
-          license='MIT',
-          description='Mustache for Python',
-          long_description=long_description,
+    setup(long_description=long_description,
           long_description_content_type='text/x-rst',
-          author='Chris Wanstrath',
-          author_email='chris@ozmm.org',
-          maintainer='Steve Arnold',
-          maintainer_email='nerdboy@gentoo.org',
-          url='https://github.com/defunkt/pystache',
           packages=PACKAGES,
           package_data = {
               # Include template files so tests can be run.
@@ -329,13 +306,6 @@ def main(sys_argv):
               'pystache.tests.data.locator': template_files,
               'pystache.tests.examples': template_files,
           },
-          entry_points = {
-            'console_scripts': [
-                'pystache=pystache.commands.render:main',
-                'pystache-test=pystache.commands.test:main',
-            ],
-          },
-          classifiers = CLASSIFIERS,
     )
 
 

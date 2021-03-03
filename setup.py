@@ -269,19 +269,6 @@ Run the following command and commit the changes--
     os.system('python setup.py sdist upload')
 
 
-# TODO: decide whether to use find_packages() instead.  I'm not sure that
-#   find_packages() is available with distutils, for example.
-PACKAGES = [
-    'pystache',
-    'pystache.commands',
-    # The following packages are only for testing.
-    'pystache.tests',
-    'pystache.tests.data',
-    'pystache.tests.data.locator',
-    'pystache.tests.examples',
-]
-
-
 def main(sys_argv):
 
     # TODO: use the logging module instead of printing.
@@ -295,17 +282,10 @@ def main(sys_argv):
         sys.exit()
 
     long_description = read(RST_DESCRIPTION_PATH)
-    template_files = ['*.mustache', '*.txt']
 
-    setup(long_description=long_description,
-          long_description_content_type='text/x-rst',
-          packages=PACKAGES,
-          package_data = {
-              # Include template files so tests can be run.
-              'pystache.tests.data': template_files,
-              'pystache.tests.data.locator': template_files,
-              'pystache.tests.examples': template_files,
-          },
+    setup(
+        long_description=long_description,
+        long_description_content_type='text/x-rst',
     )
 
 

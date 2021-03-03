@@ -17,7 +17,10 @@ jobs:
       run:
         shell: bash
     env:
+      OS: ${{ matrix.os }}
+      PYTHON: ${{ matrix.python-version }}
       PYTHONIOENCODING: utf-8
+      PIP_DOWNLOAD_CACHE: ${{ github.workspace }}/../.pip_download_cache
     strategy:
       fail-fast: false
       matrix:
@@ -48,11 +51,16 @@ jobs:
         python setup.py install
         pystache-test . ext/spec/specs
 
-    - name: Run tests
+    - name: Run tests with coverage
       run: |
         tox
       env:
         PLATFORM: ${{ matrix.os }}
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        env_vars: OS,PYTHON
 
     - name: Check pkg builds
       run: |

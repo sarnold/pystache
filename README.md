@@ -217,9 +217,12 @@ appear in the mailing list archive.
 Credits
 -------
 
-    Original Author: Chris Wanstrath
-    Previous Maintainer: Chris Jerdonek
-    Forker: Thomas David Baker
+    >>> import pystache
+    >>> context = { 'author': 'Chris Wanstrath', 'maintainer': 'Chris Jerdonek','refurbisher': 'Steve Arnold' }
+    >>> print pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}\nRefurbisher: {{refurbisher}}", context)
+    Author: Chris Wanstrath
+    Maintainer: Chris Jerdonek
+    Refurbisher: Steve Arnold
 
 Pystache logo by [David Phillips](https://davidphillips.us/) is licensed
 under a [Creative Commons Attribution-ShareAlike 3.0 Unported

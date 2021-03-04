@@ -5,7 +5,6 @@ Exposes functionality needed throughout the project.
 
 """
 
-from sys import version_info
 
 def _get_string_types():
     """

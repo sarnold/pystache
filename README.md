@@ -11,23 +11,24 @@ Pystache
 <!-- We leave the leading brackets empty here.  Otherwise, unwanted -->
 <!-- caption text shows up in the reST version converted by pandoc. -->
 [![ci](https://github.com/sarnold/pystache/actions/workflows/ci.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/ci.yml)
+[![Conda](https://github.com/sarnold/pystache/actions/workflows/conda.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/conda.yml)
 [![Wheels](https://github.com/sarnold/pystache/actions/workflows/wheels.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/wheels.yml)
 [![Release](https://github.com/sarnold/pystache/actions/workflows/release.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/release.yml)
 [![Python](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
 
-[![GitHub release](https://img.shields.io/github/v/release/sarnold/pystache?include_prereleases)](https://github.com/sarnold/pystache/releases/latest)
+[![Latest release](https://img.shields.io/github/v/release/sarnold/pystache?include_prereleases)](https://github.com/sarnold/pystache/releases/latest)
 [![License](https://img.shields.io/github/license/sarnold/pystache)](https://github.com/sarnold/pystache/blob/master/LICENSE)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a8fa1bf4638bfc6581b6/maintainability)](https://codeclimate.com/github/sarnold/pystache/maintainability)
 [![codecov](https://codecov.io/gh/sarnold/pystache/branch/master/graph/badge.svg?token=5PZNMZBI6K)](https://codecov.io/gh/sarnold/pystache)
 
 
 
-This updated fork of Pystache is currently tested on Python 3.6+ on Linux,
-Darwin, and Windows (Python 2.7 support has been removed).
+This updated fork of Pystache is currently tested on Python 3.6+ and in
+Conda, on Linux, Macos, and Windows (Python 2.7 support has been removed).
 
 ![](gh/images/logo_phillips_small.png "mustachioed, monocled snake by David Phillips")
 
-[Pystache](http://defunkt.github.com/pystache) is a Python
+[Pystache](http://sarnold.github.com/pystache) is a Python
 implementation of [Mustache](http://mustache.github.com/). Mustache is a
 framework-agnostic, logic-free templating system inspired by
 [ctemplate](http://code.google.com/p/google-ctemplate/) and
@@ -40,9 +41,9 @@ provides a good introduction to Mustache's syntax. For a more complete
 (and more current) description of Mustache's behavior, see the official
 [Mustache spec](https://github.com/mustache/spec).
 
-Pystache is [semantically versioned](http://semver.org) and can be found
-on [PyPI](http://pypi.python.org/pypi/pystache). This version of
-Pystache passes all tests in [version
+Pystache is [semantically versioned](http://semver.org) and older vaersions
+can still be found on [PyPI](http://pypi.python.org/pypi/pystache). This
+version of Pystache still passes all tests in [version
 1.1.2](https://github.com/mustache/spec/tree/v1.1.2) of the spec.
 
 
@@ -55,31 +56,21 @@ Pystache is tested with--
 -   Python 3.7
 -   Python 3.8
 -   Python 3.9
+-   Conda (py36-py39)
 
 [Distribute](http://packages.python.org/distribute/) (the setuptools fork)
-is recommended over [setuptools](http://pypi.python.org/pypi/setuptools),
-and is required in some cases (e.g. for Python 3 support).
-If you use [pip](http://www.pip-installer.org/), you probably already satisfy
-this requirement.
+is no longer required over [setuptools](http://pypi.python.org/pypi/setuptools),
+as the current packaging is now PEP517-compliant.
 
 JSON support is needed only for the command-line interface and to run
-the spec tests. We require simplejson for earlier versions of Python
-since Python's [json](http://docs.python.org/library/json.html) module
-was added in Python 2.6.
+the spec tests; PyYAML can still be used (see the Develop section).
 
-For Python 2.4 we require an earlier version of simplejson since
-simplejson stopped officially supporting Python 2.4 in simplejson
-version 2.1.0. Earlier versions of simplejson can be installed manually,
-as follows:
-
-    pip install 'simplejson<2.1.0'
-
-Official support for Python 2.4 will end with Pystache version 0.6.0.
+Official support for Python 2 will end with Pystache version 0.6.0.
 
 Install It
 ----------
 
-    pip install pystache
+    pip install -U pystache -f https://github.com/sarnold/pystache/releases/
 
 And test it--
 
@@ -124,9 +115,9 @@ directory), use the `Renderer` class like above. One can pass attributes
 to the Renderer class constructor or set them on a Renderer instance. To
 customize template loading on a per-view basis, subclass `TemplateSpec`.
 See the docstrings of the
-[Renderer](https://github.com/defunkt/pystache/blob/master/pystache/renderer.py)
+[Renderer](https://github.com/sarnold/pystache/blob/master/pystache/renderer.py)
 class and
-[TemplateSpec](https://github.com/defunkt/pystache/blob/master/pystache/template_spec.py)
+[TemplateSpec](https://github.com/sarnold/pystache/blob/master/pystache/template_spec.py)
 class for more information.
 
 You can also pre-parse a template:
@@ -224,6 +215,10 @@ The test harness parses the spec's (more human-readable) yaml files if
 parses the json files. To install PyYAML--
 
     pip install pyyaml
+
+Once the submodule is available, you can run the full test set with:
+
+    tox -e setup . ext/spec/specs
 
 To run a subset of the tests, you can use
 [nose](http://somethingaboutorange.com/mrl/projects/nose/0.11.1/testing.html):

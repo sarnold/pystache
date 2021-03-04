@@ -65,9 +65,9 @@ jobs:
       run: |
         tox -e deploy
 
-    - name: Check docs
-      if: runner.os == 'Linux'
-      run: |
-        sudo apt-get -qq update
-        sudo apt-get install -y pandoc
-        tox -e docs
+    #- name: Check docs
+      #if: runner.os == 'Linux'
+      #run: |
+        #sudo apt-get -qq update
+        #sudo apt-get install -y pandoc
+        #tox -e docs

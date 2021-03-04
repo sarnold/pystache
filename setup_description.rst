@@ -28,7 +28,7 @@ complete (and more current) description of Mustache’s behavior, see the
 official `Mustache spec <https://github.com/mustache/spec>`__.
 
 Pystache is `semantically versioned <http://semver.org>`__ and older
-vaersions can still be found on
+versions can still be found on
 `PyPI <http://pypi.python.org/pypi/pystache>`__. This version of
 Pystache still passes all tests in `version
 1.1.2 <https://github.com/mustache/spec/tree/v1.1.2>`__ of the spec.
@@ -76,12 +76,12 @@ Use It
 ::
 
    >>> import pystache
-   >>> print pystache.render('Hi {{person}}!', {'person': 'Mom'})
+   >>> print(pystache.render('Hi {{person}}!', {'person': 'Mom'}))
    Hi Mom!
 
 You can also create dedicated view classes to hold your view logic.
 
-Here’s your view class (in …/examples/readme.py):
+Here’s your view class (in ../pystache/tests/examples/readme.py):
 
 ::
 
@@ -108,7 +108,7 @@ Pull it together:
 ::
 
    >>> renderer = pystache.Renderer()
-   >>> print renderer.render(hello)
+   >>> print(renderer.render(hello))
    Hello, Pizza!
 
 For greater control over rendering (e.g. to specify a custom template
@@ -126,16 +126,16 @@ You can also pre-parse a template:
 ::
 
    >>> parsed = pystache.parse(u"Hey {{#who}}{{.}}!{{/who}}")
-   >>> print parsed
-   [u'Hey ', _SectionNode(key=u'who', index_begin=12, index_end=18, parsed=[_EscapeNode(key=u'.'), u'!'])]
+   >>> print(parsed)
+   ['Hey ', _SectionNode(key='who', index_begin=12, index_end=18, parsed=[_EscapeNode(key='.'), '!'])]
 
 And then:
 
 ::
 
-   >>> print renderer.render(parsed, {'who': 'Pops'})
+   >>> print(renderer.render(parsed, {'who': 'Pops'}))
    Hey Pops!
-   >>> print renderer.render(parsed, {'who': 'you'})
+   >>> print(renderer.render(parsed, {'who': 'you'}))
    Hey you!
 
 Python 3
@@ -263,7 +263,7 @@ Credits
 
    >>> import pystache
    >>> context = { 'author': 'Chris Wanstrath', 'maintainer': 'Chris Jerdonek','refurbisher': 'Steve Arnold' }
-   >>> print pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}\nRefurbisher: {{refurbisher}}", context)
+   >>> print(pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}\nRefurbisher: {{refurbisher}}", context))
    Author: Chris Wanstrath
    Maintainer: Chris Jerdonek
    Refurbisher: Steve Arnold

@@ -201,7 +201,7 @@ To run tests on multiple versions with coverage, run:
 
     tox -e py38-linux,py39-linux  # for example
 
-(substitute your platform above, eg, "macos" or "windows")
+(substitute your platform above, eg, macos or windows)
 
 The source distribution tests also include doctests and tests from the
 Mustache spec. To include tests from the Mustache spec in your test

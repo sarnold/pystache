@@ -3,6 +3,16 @@ History
 
 **Note:** Official support for Python 2.7 will end with Pystache version 0.6.0.
 
+0.6.0 (2021-03-04)
+------------------
+
+-   Bump spec versions to latest => v1.1.3
+-   Modernize python and CI tools, update docs/doctests
+-   Update unicode conversion test for py3-only
+-   Add pep8speaks cfg, cleanup warnings
+-   Remove superfluous setup test/unused imports
+-   Add conda recipe/CI build
+
 0.5.6 (2021-02-28)
 ------------------
 

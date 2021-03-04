@@ -10,4 +10,4 @@ from pystache.init import parse, render, Renderer, TemplateSpec
 
 __all__ = ['parse', 'render', 'Renderer', 'TemplateSpec']
 
-__version__ = '0.6.0.dev0'  # Also change in setup.py.
+__version__ = '0.6.0'

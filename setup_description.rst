@@ -261,10 +261,12 @@ Credits
 
 ::
 
-   >>> context = { 'author': 'Chris Wanstrath', 'maintainer': 'Chris Jerdonek' }
-   >>> print pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}", context)
+   >>> import pystache
+   >>> context = { 'author': 'Chris Wanstrath', 'maintainer': 'Chris Jerdonek','refurbisher': 'Steve Arnold' }
+   >>> print pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}\nRefurbisher: {{refurbisher}}", context)
    Author: Chris Wanstrath
    Maintainer: Chris Jerdonek
+   Refurbisher: Steve Arnold
 
 Pystache logo by `David Phillips <http://davidphillips.us/>`__ is
 licensed under a `Creative Commons Attribution-ShareAlike 3.0 Unported

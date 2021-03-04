@@ -43,8 +43,8 @@ provides a good introduction to Mustache's syntax. For a more complete
 
 Pystache is [semantically versioned](http://semver.org) and older versions
 can still be found on [PyPI](http://pypi.python.org/pypi/pystache). This
-version of Pystache still passes all tests in [version
-1.1.2](https://github.com/mustache/spec/tree/v1.1.2) of the spec.
+version of Pystache now passes all tests in [version
+1.1.3](https://github.com/mustache/spec/tree/v1.1.3) of the spec.
 
 
 Requirements
@@ -83,12 +83,12 @@ Use It
 ------
 
     >>> import pystache
-    >>> print pystache.render('Hi {{person}}!', {'person': 'Mom'})
+    >>> print(pystache.render('Hi {{person}}!', {'person': 'Mom'}))
     Hi Mom!
 
 You can also create dedicated view classes to hold your view logic.
 
-Here's your view class (in .../examples/readme.py):
+Here's your view class (in ../pystache/tests/examples/readme.py):
 
     class SayHello(object):
         def to(self):
@@ -107,7 +107,7 @@ directory as your class definition):
 Pull it together:
 
     >>> renderer = pystache.Renderer()
-    >>> print renderer.render(hello)
+    >>> print(renderer.render(hello))
     Hello, Pizza!
 
 For greater control over rendering (e.g. to specify a custom template
@@ -123,14 +123,14 @@ class for more information.
 You can also pre-parse a template:
 
     >>> parsed = pystache.parse(u"Hey {{#who}}{{.}}!{{/who}}")
-    >>> print parsed
-    [u'Hey ', _SectionNode(key=u'who', index_begin=12, index_end=18, parsed=[_EscapeNode(key=u'.'), u'!'])]
+    >>> print(parsed)
+    ['Hey ', _SectionNode(key='who', index_begin=12, index_end=18, parsed=[_EscapeNode(key='.'), '!'])]
 
 And then:
 
-    >>> print renderer.render(parsed, {'who': 'Pops'})
+    >>> print(renderer.render(parsed, {'who': 'Pops'}))
     Hey Pops!
-    >>> print renderer.render(parsed, {'who': 'you'})
+    >>> print(renderer.render(parsed, {'who': 'you'}))
     Hey you!
 
 Python 3
@@ -201,7 +201,7 @@ To run tests on multiple versions with coverage, run:
 
     tox -e py38-linux,py39-linux  # for example
 
-(substitute your platform above, eg, "macos" or "windows")
+(substitute your platform above, eg, macos or windows)
 
 The source distribution tests also include doctests and tests from the
 Mustache spec. To include tests from the Mustache spec in your test
@@ -239,7 +239,7 @@ Credits
 
     >>> import pystache
     >>> context = { 'author': 'Chris Wanstrath', 'maintainer': 'Chris Jerdonek','refurbisher': 'Steve Arnold' }
-    >>> print pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}\nRefurbisher: {{refurbisher}}", context)
+    >>> print(pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}\nRefurbisher: {{refurbisher}}", context))
     Author: Chris Wanstrath
     Maintainer: Chris Jerdonek
     Refurbisher: Steve Arnold

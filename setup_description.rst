@@ -19,24 +19,24 @@ implementation of `Mustache <http://mustache.github.com/>`__. Mustache
 is a framework-agnostic, logic-free templating system inspired by
 `ctemplate <http://code.google.com/p/google-ctemplate/>`__ and
 `et <http://www.ivan.fomichev.name/2008/05/erlang-template-engine-prototype.html>`__.
-Like ctemplate, Mustache “emphasizes separating logic from presentation:
-it is impossible to embed application logic in this template language.”
+Like ctemplate, Mustache "emphasizes separating logic from presentation:
+it is impossible to embed application logic in this template language."
 
 The `mustache(5) <http://mustache.github.com/mustache.5.html>`__ man
-page provides a good introduction to Mustache’s syntax. For a more
-complete (and more current) description of Mustache’s behavior, see the
+page provides a good introduction to Mustache's syntax. For a more
+complete (and more current) description of Mustache's behavior, see the
 official `Mustache spec <https://github.com/mustache/spec>`__.
 
 Pystache is `semantically versioned <http://semver.org>`__ and older
-vaersions can still be found on
+versions can still be found on
 `PyPI <http://pypi.python.org/pypi/pystache>`__. This version of
-Pystache still passes all tests in `version
-1.1.2 <https://github.com/mustache/spec/tree/v1.1.2>`__ of the spec.
+Pystache now passes all tests in `version
+1.1.3 <https://github.com/mustache/spec/tree/v1.1.3>`__ of the spec.
 
 Requirements
 ------------
 
-Pystache is tested with–
+Pystache is tested with--
 
 -  Python 3.6
 -  Python 3.7
@@ -61,13 +61,13 @@ Install It
 
    pip install -U pystache -f https://github.com/sarnold/pystache/releases/
 
-And test it–
+And test it--
 
 ::
 
    pystache-test
 
-To install and test from source (e.g. from GitHub), see the Develop
+To install and test from source (e.g. from GitHub), see the Develop
 section.
 
 Use It
@@ -76,12 +76,12 @@ Use It
 ::
 
    >>> import pystache
-   >>> print pystache.render('Hi {{person}}!', {'person': 'Mom'})
+   >>> print(pystache.render('Hi {{person}}!', {'person': 'Mom'}))
    Hi Mom!
 
 You can also create dedicated view classes to hold your view logic.
 
-Here’s your view class (in …/examples/readme.py):
+Here's your view class (in ../pystache/tests/examples/readme.py):
 
 ::
 
@@ -108,10 +108,10 @@ Pull it together:
 ::
 
    >>> renderer = pystache.Renderer()
-   >>> print renderer.render(hello)
+   >>> print(renderer.render(hello))
    Hello, Pizza!
 
-For greater control over rendering (e.g. to specify a custom template
+For greater control over rendering (e.g. to specify a custom template
 directory), use the ``Renderer`` class like above. One can pass
 attributes to the Renderer class constructor or set them on a Renderer
 instance. To customize template loading on a per-view basis, subclass
@@ -126,16 +126,16 @@ You can also pre-parse a template:
 ::
 
    >>> parsed = pystache.parse(u"Hey {{#who}}{{.}}!{{/who}}")
-   >>> print parsed
-   [u'Hey ', _SectionNode(key=u'who', index_begin=12, index_end=18, parsed=[_EscapeNode(key=u'.'), u'!'])]
+   >>> print(parsed)
+   ['Hey ', _SectionNode(key='who', index_begin=12, index_end=18, parsed=[_EscapeNode(key='.'), '!'])]
 
 And then:
 
 ::
 
-   >>> print renderer.render(parsed, {'who': 'Pops'})
+   >>> print(renderer.render(parsed, {'who': 'Pops'}))
    Hey Pops!
-   >>> print renderer.render(parsed, {'who': 'you'})
+   >>> print(renderer.render(parsed, {'who': 'you'}))
    Hey you!
 
 Python 3
@@ -151,8 +151,8 @@ slightly differently between Python 2 and 3, as follows:
    ``sys.getdefaultencoding()``. However, this function can return
    different values under Python 2 and 3, even when run from the same
    system. Check your own system for the behavior on your system, or do
-   not rely on the defaults by passing in the encodings explicitly
-   (e.g. to the ``Renderer`` class).
+   not rely on the defaults by passing in the encodings explicitly (e.g.
+   to the ``Renderer`` class).
 
 Unicode
 -------
@@ -164,10 +164,10 @@ Internally, Pystache uses `only unicode
 strings <http://docs.python.org/howto/unicode.html#tips-for-writing-unicode-aware-programs>`__
 (``str`` in Python 3 and ``unicode`` in Python 2). For input, Pystache
 accepts both unicode strings and byte strings (``bytes`` in Python 3 and
-``str`` in Python 2). For output, Pystache’s template rendering methods
+``str`` in Python 2). For output, Pystache's template rendering methods
 return only unicode.
 
-Pystache’s ``Renderer`` class supports a number of attributes to control
+Pystache's ``Renderer`` class supports a number of attributes to control
 how Pystache converts byte strings to unicode on input. These include
 the ``file_encoding``, ``string_encoding``, and ``decode_errors``
 attributes.
@@ -179,22 +179,22 @@ other byte strings encountered during the rendering process into unicode
 (e.g. context values that are encoded byte strings).
 
 The ``decode_errors`` attribute is what the renderer passes as the
-``errors`` argument to Python’s built-in unicode-decoding function
+``errors`` argument to Python's built-in unicode-decoding function
 (``str()`` in Python 3 and ``unicode()`` in Python 2). The valid values
 for this argument are ``strict``, ``ignore``, and ``replace``.
 
-Each of these attributes can be set via the ``Renderer`` class’s
+Each of these attributes can be set via the ``Renderer`` class's
 constructor using a keyword argument of the same name. See the Renderer
-class’s docstrings for further details. In addition, the
+class's docstrings for further details. In addition, the
 ``file_encoding`` attribute can be controlled on a per-view basis by
 subclassing the ``TemplateSpec`` class. When not specified explicitly,
-these attributes default to values set in Pystache’s ``defaults``
+these attributes default to values set in Pystache's ``defaults``
 module.
 
 Develop
 -------
 
-To test from a source distribution (without installing)–
+To test from a source distribution (without installing)--
 
 ::
 
@@ -215,7 +215,7 @@ To run tests on multiple versions with coverage, run:
 
    tox -e py38-linux,py39-linux  # for example
 
-(substitute your platform above, eg, “macos” or “windows”)
+(substitute your platform above, eg, macos or windows)
 
 The source distribution tests also include doctests and tests from the
 Mustache spec. To include tests from the Mustache spec in your test
@@ -226,9 +226,9 @@ runs:
    git submodule init
    git submodule update
 
-The test harness parses the spec’s (more human-readable) yaml files if
+The test harness parses the spec's (more human-readable) yaml files if
 `PyYAML <http://pypi.python.org/pypi/PyYAML>`__ is present. Otherwise,
-it parses the json files. To install PyYAML–
+it parses the json files. To install PyYAML--
 
 ::
 
@@ -263,7 +263,7 @@ Credits
 
    >>> import pystache
    >>> context = { 'author': 'Chris Wanstrath', 'maintainer': 'Chris Jerdonek','refurbisher': 'Steve Arnold' }
-   >>> print pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}\nRefurbisher: {{refurbisher}}", context)
+   >>> print(pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}\nRefurbisher: {{refurbisher}}", context))
    Author: Chris Wanstrath
    Maintainer: Chris Jerdonek
    Refurbisher: Steve Arnold
@@ -279,12 +279,26 @@ History
 **Note:** Official support for Python 2.7 will end with Pystache version
 0.6.0.
 
+0.6.0 (2021-03-04)
+------------------
+
+-  Bump spec versions to latest => v1.1.3
+-  Modernize python and CI tools, update docs/doctests
+-  Update unicode conversion test for py3-only
+-  Add pep8speaks cfg, cleanup warnings
+-  Remove superfluous setup test/unused imports
+-  Add conda recipe/CI build
+
+.. _section-1:
+
 0.5.6 (2021-02-28)
 ------------------
 
 -  Use correct wheel name in release workflow, limit wheels
 -  Add install check/test of downloaded wheel
 -  Update/add ci workflows and tox cfg, bump to next dev0 version
+
+.. _section-2:
 
 0.5.5 (2020-12-16)
 ------------------
@@ -294,6 +308,8 @@ History
 -  fix bogus commit message, update versions and tox cf
 -  add post-test steps for building pkgs with/without doc updates
 -  add CI build check, fix MANIFEST.in pruning
+
+.. _section-3:
 
 0.5.4-2 (2020-11-09)
 --------------------
@@ -306,15 +322,19 @@ History
 -  Bugfix: modernize python versions (keep py27) and fix spec_test load
    cmd
 
+.. _section-4:
+
 0.5.4 (2014-07-11)
 ------------------
 
 -  Bugfix: made test with filenames OS agnostic (issue #162).
 
+.. _section-5:
+
 0.5.3 (2012-11-03)
 ------------------
 
--  Added ability to customize string coercion (e.g. to have None render
+-  Added ability to customize string coercion (e.g. to have None render
    as ``''``) (issue #130).
 -  Added Renderer.render_name() to render a template by name (issue
    #122).
@@ -338,10 +358,12 @@ History
 -  Bugfix: lambda section values can now return non-ascii, non-unicode
    strings (issue #118).
 -  Bugfix: allow ``test_pystache.py`` and ``tox`` to pass when run from
-   a downloaded sdist (i.e. without the spec test directory).
+   a downloaded sdist (i.e. without the spec test directory).
 -  Convert HISTORY and README files from reST to Markdown.
 -  More robust handling of byte strings in Python 3.
--  Added Creative Commons license for David Phillips’s logo.
+-  Added Creative Commons license for David Phillips's logo.
+
+.. _section-6:
 
 0.5.2 (2012-05-03)
 ------------------
@@ -355,6 +377,8 @@ History
    context stack (issue #113).
 -  Bugfix: lists of lambdas for sections were not rendered (issue #114).
 
+.. _section-7:
+
 0.5.1 (2012-04-24)
 ------------------
 
@@ -364,6 +388,8 @@ History
 -  Added \__version_\_ package attribute.
 -  Test harness now supports both YAML and JSON forms of Mustache spec.
 -  Test harness no longer requires nose.
+
+.. _section-8:
 
 0.5.0 (2012-04-03)
 ------------------
@@ -387,7 +413,7 @@ Highlights:
 -  Added TemplateSpec class: template rendering can be specified on a
    per-view basis by subclassing from TemplateSpec.
 -  Introduced separation of concerns and removed circular dependencies
-   (e.g. between Template and View classes, cf. `issue
+   (e.g. between Template and View classes, cf. `issue
    #13 <https://github.com/defunkt/pystache/issues/13>`__).
 -  Unicode now used consistently throughout the rendering process.
 -  Expanded test coverage: nosetests now runs doctests and ~105 test
@@ -395,12 +421,12 @@ Highlights:
    to ~315).
 -  Added a rudimentary benchmarking script to gauge performance while
    refactoring.
--  Extensive documentation added (e.g. docstrings).
+-  Extensive documentation added (e.g. docstrings).
 
 Other changes:
 
 -  Added a command-line interface. [vrde]
--  The main rendering class now accepts a custom partial loader (e.g. a
+-  The main rendering class now accepts a custom partial loader (e.g. a
    dictionary) and a custom escape function.
 -  Non-ascii characters in str strings are now supported while
    rendering.
@@ -423,10 +449,14 @@ Bug fixes:
 -  Passing ``**kwargs`` to ``Template()`` with no context no longer
    raises an exception.
 
+.. _section-9:
+
 0.4.1 (2012-03-25)
 ------------------
 
 -  Added support for Python 2.4. [wangtz, jvantuyl]
+
+.. _section-10:
 
 0.4.0 (2011-01-12)
 ------------------
@@ -435,10 +465,14 @@ Bug fixes:
 -  Add support for inverted lists
 -  Decoupled template loading
 
+.. _section-11:
+
 0.3.1 (2010-05-07)
 ------------------
 
 -  Fix package
+
+.. _section-12:
 
 0.3.0 (2010-05-03)
 ------------------
@@ -448,11 +482,13 @@ Bug fixes:
 -  Higher Order Sections
 -  Inverted sections
 
+.. _section-13:
+
 0.2.0 (2010-02-15)
 ------------------
 
 -  Bugfix: Methods returning False or None are not rendered
--  Bugfix: Don’t render an empty string when a tag’s value is 0.
+-  Bugfix: Don't render an empty string when a tag's value is 0.
    [enaeseth]
 -  Add support for using non-callables as View attributes.
    [joshthecoder]
@@ -461,11 +497,15 @@ Bug fixes:
    [enaeseth]
 -  Template file encoding awareness. [enaeseth]
 
+.. _section-14:
+
 0.1.1 (2009-11-13)
 ------------------
 
--  Ensure we’re dealing with strings, always
+-  Ensure we're dealing with strings, always
 -  Tests can be run by executing the test file directly
+
+.. _section-15:
 
 0.1.0 (2009-11-12)
 ------------------
@@ -481,7 +521,7 @@ Copyright (c) 2009 Chris Wanstrath
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
-“Software”), to deal in the Software without restriction, including
+"Software"), to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
 distribute, sublicense, and/or sell copies of the Software, and to
 permit persons to whom the Software is furnished to do so, subject to
@@ -490,7 +530,7 @@ the following conditions:
 The above copyright notice and this permission notice shall be included
 in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
 OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY

@@ -13,6 +13,13 @@ tests/benchmark.py 10000
 import sys
 from timeit import Timer
 
+try:
+    import chevron as pystache
+    print('Using module: chevron')
+except (ImportError):
+    import pystache
+    print('Using module: pystache')
+
 import pystache
 
 # TODO: make the example realistic.

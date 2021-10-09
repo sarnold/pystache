@@ -118,8 +118,7 @@ class Locator(object):
 
         if path is None:
             raise TemplateNotFoundError(
-                'File %s not found in dirs: %s'
-                % (repr(file_name), repr(search_dirs))
+                'File %s not found in dirs: %s' % (repr(file_name), repr(search_dirs))
             )
 
         return path

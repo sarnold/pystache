@@ -176,9 +176,7 @@ class _SectionNode(object):
     # TODO: the template_ and parsed_template_ arguments don't both seem
     # to be necessary.  Can we remove one of them?  For example, if
     # callable(data) is True, then the initial parsed_template isn't used.
-    def __init__(
-        self, key, parsed, delimiters, template, index_begin, index_end
-    ):
+    def __init__(self, key, parsed, delimiters, template, index_begin, index_end):
         self.delimiters = delimiters
         self.key = key
         self.parsed = parsed
@@ -211,9 +209,7 @@ class _SectionNode(object):
                 #
                 # TODO: should we check the arity?
                 val = val(self.template[self.index_begin : self.index_end])
-                val = engine._render_value(
-                    val, context, delimiters=self.delimiters
-                )
+                val = engine._render_value(val, context, delimiters=self.delimiters)
                 parts.append(val)
                 continue
 
@@ -290,21 +286,11 @@ class _Parser(object):
 
             # Standalone (non-interpolation) tags consume the entire line,
             # both leading whitespace and trailing newline.
-            did_tag_begin_line = (
-                match_index == 0
-                or template[match_index - 1] in END_OF_LINE_CHARACTERS
-            )
-            did_tag_end_line = (
-                end_index == len(template)
-                or template[end_index] in END_OF_LINE_CHARACTERS
-            )
+            did_tag_begin_line = match_index == 0 or template[match_index - 1] in END_OF_LINE_CHARACTERS
+            did_tag_end_line = end_index == len(template) or template[end_index] in END_OF_LINE_CHARACTERS
             is_tag_interpolating = tag_type in ['', '&']
 
-            if (
-                did_tag_begin_line
-                and did_tag_end_line
-                and not is_tag_interpolating
-            ):
+            if did_tag_begin_line and did_tag_end_line and not is_tag_interpolating:
                 if end_index < len(template):
                     end_index += template[end_index] == '\r' and 1 or 0
                 if end_index < len(template):
@@ -330,10 +316,7 @@ class _Parser(object):
 
             if tag_type == '/':
                 if tag_key != section_key:
-                    raise ParsingError(
-                        'Section end tag mismatch: %s != %s'
-                        % (tag_key, section_key)
-                    )
+                    raise ParsingError('Section end tag mismatch: %s != %s' % (tag_key, section_key))
 
                 # Restore previous state with newly found section data.
                 parsed_section = parsed_template
@@ -354,9 +337,7 @@ class _Parser(object):
                 )
 
             else:
-                node = self._make_interpolation_node(
-                    tag_type, tag_key, leading_whitespace
-                )
+                node = self._make_interpolation_node(tag_type, tag_key, leading_whitespace)
 
             parsed_template.add(node)
 
@@ -389,9 +370,7 @@ class _Parser(object):
         if tag_type == '>':
             return _PartialNode(tag_key, leading_whitespace)
 
-        raise Exception(
-            'Invalid symbol for interpolation tag: %s' % repr(tag_type)
-        )
+        raise Exception('Invalid symbol for interpolation tag: %s' % repr(tag_type))
 
     def _make_section_node(
         self,

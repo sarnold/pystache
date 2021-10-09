@@ -1,3 +1,33 @@
 [build-system]
 requires = ["setuptools>=40.8.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.coverage.run]
+branch = true
+source = ["pystache"]
+
+[tool.coverage.paths]
+source = ["pystache"]
+
+[tool.coverage.report]
+fail_under = 95
+show_missing = true
+
+[tool.black]
+line-length = 110
+skip-string-normalization = true
+include = '\.py$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | pystache/tests
+)/
+'''

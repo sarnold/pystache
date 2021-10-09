@@ -11,15 +11,9 @@ max-line-length = 110
 max-complexity = 25
 addons = file,open,basestring,xrange,unicode,long,cmp
 ignore =
-    # ignore missing debug import (only for pdb)
-    F401,
-    # too many leading '#' for block comment
-    E266,
-    # whitespace before ':'
-    E203,
-    # multiple spaces before operator
-    E221,
-    # line break before binary operator
-    W503,
-    # line break after binary operator
-    W504,
+    W503,  # line break before binary operator
+    W504,  # line break after binary operator
+    E266,  # too many leading '#' for block comment
+    E731,  # do not assign a lambda expression, use a def
+    E203,  # whitespace before ':'
+    E221,  # multiple spaces before operator

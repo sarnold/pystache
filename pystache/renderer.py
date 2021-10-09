@@ -47,9 +47,17 @@ class Renderer(object):
 
     """
 
-    def __init__(self, file_encoding=None, string_encoding=None,
-                 decode_errors=None, search_dirs=None, file_extension=None,
-                 escape=None, partials=None, missing_tags=None):
+    def __init__(
+        self,
+        file_encoding=None,
+        string_encoding=None,
+        decode_errors=None,
+        search_dirs=None,
+        file_extension=None,
+        escape=None,
+        partials=None,
+        missing_tags=None,
+    ):
         """
         Construct an instance.
 
@@ -229,8 +237,12 @@ class Renderer(object):
         Create a Loader instance using current attributes.
 
         """
-        return Loader(file_encoding=self.file_encoding, extension=self.file_extension,
-                      to_unicode=self.str, search_dirs=self.search_dirs)
+        return Loader(
+            file_encoding=self.file_encoding,
+            extension=self.file_extension,
+            to_unicode=self.str,
+            search_dirs=self.search_dirs,
+        )
 
     def _make_load_template(self):
         """
@@ -262,8 +274,10 @@ class Renderer(object):
             #   raise a KeyError on name not found.
             template = partials.get(name)
             if template is None:
-                raise TemplateNotFoundError("Name %s not found in partials: %s" %
-                                            (repr(name), type(partials)))
+                raise TemplateNotFoundError(
+                    'Name %s not found in partials: %s'
+                    % (repr(name), type(partials))
+                )
 
             # RenderEngine requires that the return value be unicode.
             return self._to_unicode_hard(template)
@@ -328,11 +342,13 @@ class Renderer(object):
         resolve_context = self._make_resolve_context()
         resolve_partial = self._make_resolve_partial()
 
-        engine = RenderEngine(literal=self._to_unicode_hard,
-                              escape=self._escape_to_unicode,
-                              resolve_context=resolve_context,
-                              resolve_partial=resolve_partial,
-                              to_str=self.str_coerce)
+        engine = RenderEngine(
+            literal=self._to_unicode_hard,
+            escape=self._escape_to_unicode,
+            resolve_context=resolve_context,
+            resolve_partial=resolve_partial,
+            to_str=self.str_coerce,
+        )
         return engine
 
     # TODO: add unit tests for this method.

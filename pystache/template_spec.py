@@ -9,6 +9,7 @@ stands for "special" or "specified" template information.
 
 """
 
+
 class TemplateSpec(object):
 
     """

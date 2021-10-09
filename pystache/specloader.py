@@ -46,7 +46,9 @@ class SpecLoader(object):
         else:
             template_name = locator.make_template_name(spec)
 
-        file_name = locator.make_file_name(template_name, spec.template_extension)
+        file_name = locator.make_file_name(
+            template_name, spec.template_extension
+        )
 
         return (spec.template_rel_directory, file_name)
 
@@ -64,7 +66,9 @@ class SpecLoader(object):
 
         if dir_path is None:
             # Then we need to search for the path.
-            path = locator.find_object(spec, self.loader.search_dirs, file_name=file_name)
+            path = locator.find_object(
+                spec, self.loader.search_dirs, file_name=file_name
+            )
         else:
             obj_dir = locator.get_object_directory(spec)
             path = os.path.join(obj_dir, dir_path, file_name)

@@ -36,7 +36,7 @@ def parse(template, delimiters=None):
 
     """
     if type(template) is not str:
-        raise Exception("Template is not unicode: %s" % type(template))
+        raise Exception('Template is not unicode: %s' % type(template))
     parser = _Parser(delimiters)
     return parser.parse(template)
 
@@ -48,7 +48,7 @@ def _compile_template_re(delimiters):
     """
     # The possible tag type characters following the opening tag,
     # excluding "=" and "{".
-    tag_types = "!>&/#^"
+    tag_types = '!>&/#^'
 
     # TODO: are we following this in the spec?
     #
@@ -64,7 +64,11 @@ def _compile_template_re(delimiters):
           (?P<tag>[%(tag_types)s]?)  \s* (?P<tag_key>[\s\S]+?)
         )
         \s* %(ctag)s
-    """ % {'tag_types': tag_types, 'otag': re.escape(delimiters[0]), 'ctag': re.escape(delimiters[1])}
+    """ % {
+        'tag_types': tag_types,
+        'otag': re.escape(delimiters[0]),
+        'ctag': re.escape(delimiters[1]),
+    }
 
     return re.compile(tag, re.VERBOSE)
 
@@ -76,6 +80,7 @@ class ParsingError(Exception):
 
 ## Node types
 
+
 def _format(obj, exclude=None):
     if exclude is None:
         exclude = []
@@ -84,12 +89,11 @@ def _format(obj, exclude=None):
     names = list(set(attrs.keys()) - set(exclude))
     names.sort()
     names.insert(0, 'key')
-    args = ["%s=%s" % (name, repr(attrs[name])) for name in names]
-    return "%s(%s)" % (obj.__class__.__name__, ", ".join(args))
+    args = ['%s=%s' % (name, repr(attrs[name])) for name in names]
+    return '%s(%s)' % (obj.__class__.__name__, ', '.join(args))
 
 
 class _CommentNode(object):
-
     def __repr__(self):
         return _format(self)
 
@@ -98,7 +102,6 @@ class _CommentNode(object):
 
 
 class _ChangeNode(object):
-
     def __init__(self, delimiters):
         self.delimiters = delimiters
 
@@ -110,7 +113,6 @@ class _ChangeNode(object):
 
 
 class _EscapeNode(object):
-
     def __init__(self, key):
         self.key = key
 
@@ -123,7 +125,6 @@ class _EscapeNode(object):
 
 
 class _LiteralNode(object):
-
     def __init__(self, key):
         self.key = key
 
@@ -136,7 +137,6 @@ class _LiteralNode(object):
 
 
 class _PartialNode(object):
-
     def __init__(self, key, indent):
         self.key = key
         self.indent = indent
@@ -153,7 +153,6 @@ class _PartialNode(object):
 
 
 class _InvertedNode(object):
-
     def __init__(self, key, parsed_section):
         self.key = key
         self.parsed_section = parsed_section
@@ -177,7 +176,9 @@ class _SectionNode(object):
     # TODO: the template_ and parsed_template_ arguments don't both seem
     # to be necessary.  Can we remove one of them?  For example, if
     # callable(data) is True, then the initial parsed_template isn't used.
-    def __init__(self, key, parsed, delimiters, template, index_begin, index_end):
+    def __init__(
+        self, key, parsed, delimiters, template, index_begin, index_end
+    ):
         self.delimiters = delimiters
         self.key = key
         self.parsed = parsed
@@ -209,8 +210,10 @@ class _SectionNode(object):
                 #   https://github.com/defunkt/pystache/issues/113
                 #
                 # TODO: should we check the arity?
-                val = val(self.template[self.index_begin:self.index_end])
-                val = engine._render_value(val, context, delimiters=self.delimiters)
+                val = val(self.template[self.index_begin : self.index_end])
+                val = engine._render_value(
+                    val, context, delimiters=self.delimiters
+                )
                 parts.append(val)
                 continue
 
@@ -287,11 +290,21 @@ class _Parser(object):
 
             # Standalone (non-interpolation) tags consume the entire line,
             # both leading whitespace and trailing newline.
-            did_tag_begin_line = match_index == 0 or template[match_index - 1] in END_OF_LINE_CHARACTERS
-            did_tag_end_line = end_index == len(template) or template[end_index] in END_OF_LINE_CHARACTERS
+            did_tag_begin_line = (
+                match_index == 0
+                or template[match_index - 1] in END_OF_LINE_CHARACTERS
+            )
+            did_tag_end_line = (
+                end_index == len(template)
+                or template[end_index] in END_OF_LINE_CHARACTERS
+            )
             is_tag_interpolating = tag_type in ['', '&']
 
-            if did_tag_begin_line and did_tag_end_line and not is_tag_interpolating:
+            if (
+                did_tag_begin_line
+                and did_tag_end_line
+                and not is_tag_interpolating
+            ):
                 if end_index < len(template):
                     end_index += template[end_index] == '\r' and 1 or 0
                 if end_index < len(template):
@@ -317,17 +330,33 @@ class _Parser(object):
 
             if tag_type == '/':
                 if tag_key != section_key:
-                    raise ParsingError("Section end tag mismatch: %s != %s" % (tag_key, section_key))
+                    raise ParsingError(
+                        'Section end tag mismatch: %s != %s'
+                        % (tag_key, section_key)
+                    )
 
                 # Restore previous state with newly found section data.
                 parsed_section = parsed_template
 
-                (tag_type, section_start_index, section_key, parsed_template) = states.pop()
-                node = self._make_section_node(template, tag_type, tag_key, parsed_section,
-                                               section_start_index, match_index)
+                (
+                    tag_type,
+                    section_start_index,
+                    section_key,
+                    parsed_template,
+                ) = states.pop()
+                node = self._make_section_node(
+                    template,
+                    tag_type,
+                    tag_key,
+                    parsed_section,
+                    section_start_index,
+                    match_index,
+                )
 
             else:
-                node = self._make_interpolation_node(tag_type, tag_key, leading_whitespace)
+                node = self._make_interpolation_node(
+                    tag_type, tag_key, leading_whitespace
+                )
 
             parsed_template.add(node)
 
@@ -360,19 +389,34 @@ class _Parser(object):
         if tag_type == '>':
             return _PartialNode(tag_key, leading_whitespace)
 
-        raise Exception("Invalid symbol for interpolation tag: %s" % repr(tag_type))
+        raise Exception(
+            'Invalid symbol for interpolation tag: %s' % repr(tag_type)
+        )
 
-    def _make_section_node(self, template, tag_type, tag_key, parsed_section,
-                           section_start_index, section_end_index):
+    def _make_section_node(
+        self,
+        template,
+        tag_type,
+        tag_key,
+        parsed_section,
+        section_start_index,
+        section_end_index,
+    ):
         """
         Create and return a section node for the parse tree.
 
         """
         if tag_type == '#':
-            return _SectionNode(tag_key, parsed_section, self._delimiters,
-                               template, section_start_index, section_end_index)
+            return _SectionNode(
+                tag_key,
+                parsed_section,
+                self._delimiters,
+                template,
+                section_start_index,
+                section_end_index,
+            )
 
         if tag_type == '^':
             return _InvertedNode(tag_key, parsed_section)
 
-        raise Exception("Invalid symbol for section tag: %s" % repr(tag_type))
+        raise Exception('Invalid symbol for section tag: %s' % repr(tag_type))

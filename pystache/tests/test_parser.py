@@ -24,4 +24,3 @@ class RegularExpressionTestCase(unittest.TestCase):
         match = re.search("b  {{test}}")
 
         self.assertEqual(match.start(), 1)
-

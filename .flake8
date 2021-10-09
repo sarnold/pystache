@@ -11,8 +11,6 @@ max-line-length = 110
 max-complexity = 25
 addons = file,open,basestring,xrange,unicode,long,cmp
 ignore =
-    W503,  # line break before binary operator
-    W504,  # line break after binary operator
     E266,  # too many leading '#' for block comment
     E731,  # do not assign a lambda expression, use a def
     E203,  # whitespace before ':'

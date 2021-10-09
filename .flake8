@@ -1,0 +1,25 @@
+[flake8]
+exclude =
+    .git,
+    __pycache__,
+    pystache/tests,
+    test_pystache.py,
+    build,
+    dist
+
+max-line-length = 110
+max-complexity = 25
+addons = file,open,basestring,xrange,unicode,long,cmp
+ignore =
+    # ignore missing debug import (only for pdb)
+    F401,
+    # too many leading '#' for block comment
+    E266,
+    # whitespace before ':'
+    E203,
+    # multiple spaces before operator
+    E221,
+    # line break before binary operator
+    W503,
+    # line break after binary operator
+    W504,

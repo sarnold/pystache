@@ -5,7 +5,6 @@ This module provides a Renderer class to render templates.
 
 """
 
-import sys
 
 from pystache import defaults
 from pystache.common import TemplateNotFoundError, MissingTags, is_string
@@ -413,7 +412,9 @@ class Renderer(object):
         # RenderEngine.render() requires that the template string be unicode.
         template = self._to_unicode_hard(template)
 
-        render_func = lambda engine, stack: engine.render(template, stack)
+        render_func = lambda engine, stack: engine.render(  # noqa
+            template, stack
+        )
 
         return self._render_final(render_func, *context, **kwargs)
 
@@ -469,7 +470,9 @@ class Renderer(object):
         if is_string(template):
             return self._render_string(template, *context, **kwargs)
         if isinstance(template, ParsedTemplate):
-            render_func = lambda engine, stack: template.render(engine, stack)
+            render_func = lambda engine, stack: template.render(  # noqa
+                engine, stack
+            )
             return self._render_final(render_func, *context, **kwargs)
         # Otherwise, we assume the template is an object.
 

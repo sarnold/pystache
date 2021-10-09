@@ -14,5 +14,5 @@ def main(sys_argv=sys.argv):
     run_tests(sys_argv=sys_argv)
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

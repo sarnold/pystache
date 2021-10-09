@@ -262,7 +262,7 @@ class _Parser(object):
         self._compile_delimiters()
 
         start_index = 0
-        content_end_index, parsed_section, section_key = None, None, None
+        parsed_section, section_key = None, None
         parsed_template = ParsedTemplate()
 
         states = []

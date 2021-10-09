@@ -59,10 +59,6 @@ class MissingTags(object):
 class PystacheError(Exception):
     """Base class for Pystache exceptions."""
 
-    pass
-
 
 class TemplateNotFoundError(PystacheError):
     """An exception raised when a template is not found."""
-
-    pass

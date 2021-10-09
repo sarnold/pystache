@@ -86,7 +86,6 @@ Push a tag to GitHub:
 """
 
 import os
-import shutil
 import sys
 
 from setuptools import setup

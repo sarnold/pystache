@@ -31,6 +31,8 @@ _BUILTIN_MODULE = type(0).__module__
 #     http://docs.python.org/glossary.html#term-eafp
 class NotFound(object):
     pass
+
+
 _NOT_FOUND = NotFound()
 
 
@@ -88,7 +90,7 @@ class KeyNotFoundError(PystacheError):
         self.details = details
 
     def __str__(self):
-        return "Key %s not found: %s" % (repr(self.key), self.details)
+        return 'Key %s not found: %s' % (repr(self.key), self.details)
 
 
 class ContextStack(object):
@@ -140,7 +142,7 @@ class ContextStack(object):
         "ContextStack({'alpha': 'abc'}, {'numeric': 123})"
 
         """
-        return "%s%s" % (self.__class__.__name__, tuple(self._stack))
+        return '%s%s' % (self.__class__.__name__, tuple(self._stack))
 
     @staticmethod
     def create(*context, **kwargs):
@@ -273,14 +275,14 @@ class ContextStack(object):
             try:
                 return self.top()
             except IndexError:
-                raise KeyNotFoundError(".", "empty context stack")
+                raise KeyNotFoundError('.', 'empty context stack')
 
         parts = name.split('.')
 
         try:
             result = self._get_simple(parts[0])
         except KeyNotFoundError:
-            raise KeyNotFoundError(name, "first part")
+            raise KeyNotFoundError(name, 'first part')
 
         for part in parts[1:]:
             # The full context stack is not used to resolve the remaining parts.
@@ -297,7 +299,7 @@ class ContextStack(object):
             # TODO: consider using EAFP here instead.
             #   http://docs.python.org/glossary.html#term-eafp
             if result is _NOT_FOUND:
-                raise KeyNotFoundError(name, "missing %s" % repr(part))
+                raise KeyNotFoundError(name, 'missing %s' % repr(part))
 
         return result
 
@@ -311,7 +313,7 @@ class ContextStack(object):
             if result is not _NOT_FOUND:
                 return result
 
-        raise KeyNotFoundError(name, "part missing")
+        raise KeyNotFoundError(name, 'part missing')
 
     def push(self, item):
         """

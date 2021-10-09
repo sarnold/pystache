@@ -5,9 +5,7 @@ This module provides a Loader class for locating and reading templates.
 
 """
 
-import os
 import platform
-import sys
 
 from pystache import common
 from pystache import defaults

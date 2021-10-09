@@ -5,8 +5,6 @@ Defines a class responsible for rendering logic.
 
 """
 
-import re
-
 from pystache.common import is_string
 from pystache.parser import parse
 

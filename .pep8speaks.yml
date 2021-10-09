@@ -6,4 +6,13 @@ no_blank_comment: False  # If True, no comment is made on PR without any errors.
 descending_issues_order: True  # If True, PEP 8 issues in message will be displayed in descending order of line numbers in the file
 
 pycodestyle:  # Same as scanner.linter value. Other option is flake8
-    max-line-length: 112  # Default is 79 in PEP 8
+    max-line-length: 110  # Default is 79 in PEP 8
+
+flake8:
+    max-line-length: 110
+    ignore:  # Errors and warnings to ignore
+        - W504  # line break after binary operator
+        - E266  # too many leading '#' for block comment
+        - E731  # do not assign a lambda expression, use a def
+        - E203  # whitespace before ':'
+        - E221  # multiple spaces before operator

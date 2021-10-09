@@ -274,8 +274,7 @@ class Renderer(object):
             template = partials.get(name)
             if template is None:
                 raise TemplateNotFoundError(
-                    'Name %s not found in partials: %s'
-                    % (repr(name), type(partials))
+                    'Name %s not found in partials: %s' % (repr(name), type(partials))
                 )
 
             # RenderEngine requires that the return value be unicode.
@@ -412,9 +411,7 @@ class Renderer(object):
         # RenderEngine.render() requires that the template string be unicode.
         template = self._to_unicode_hard(template)
 
-        render_func = lambda engine, stack: engine.render(  # noqa
-            template, stack
-        )
+        render_func = lambda engine, stack: engine.render(template, stack)  # noqa
 
         return self._render_final(render_func, *context, **kwargs)
 
@@ -470,9 +467,7 @@ class Renderer(object):
         if is_string(template):
             return self._render_string(template, *context, **kwargs)
         if isinstance(template, ParsedTemplate):
-            render_func = lambda engine, stack: template.render(  # noqa
-                engine, stack
-            )
+            render_func = lambda engine, stack: template.render(engine, stack)  # noqa
             return self._render_final(render_func, *context, **kwargs)
         # Otherwise, we assume the template is an object.
 

@@ -19,7 +19,7 @@ repos:
       - id: check-toml
       #- id: check-json
       - id: check-yaml
-        exclude: 'conda/meta.yaml'
+        exclude: '(conda/meta.yaml|.pep8speaks.yml)'
 
   # use ffffff (black fork) for single quote normalization
   # (otherwise switch to black for double quotes)
@@ -52,6 +52,7 @@ repos:
     rev: v1.4
     hooks:
       - id: autoflake
+        exclude: '(.*tests/.*|.*test.py$|^setup.py$|^test_.*.py$)'
         args:
           - --in-place
           - --remove-all-unused-imports
@@ -81,7 +82,7 @@ repos:
           [
             "-rn",
             "-sn",
-            "--fail-under=8.00",
+            "--fail-under=8.10",
           ]
 
   - repo: https://github.com/lovesegfault/beautysh

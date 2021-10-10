@@ -17,7 +17,7 @@ repos:
       - id: mixed-line-ending
         args: [--fix=lf]
       - id: check-toml
-      #- id: check-json
+      - id: check-json
       - id: check-yaml
         exclude: '(conda/meta.yaml|.pep8speaks.yml)'
 
@@ -70,8 +70,7 @@ repos:
     rev: 1.6.2
     hooks:
       - id: bandit
-        exclude: '(.*tests/.*|.*test.py$|^setup.py$|^test_.*.py$)'
-        args: ["-ll"]
+        args: ["-ll", "-b", "bandit_baseline.json"]
 
   - repo: https://github.com/PyCQA/pylint
     rev: v2.11.1

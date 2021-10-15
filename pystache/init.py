@@ -5,9 +5,10 @@ This module contains the initialization logic called by __init__.py.
 
 """
 
-from pystache.parser import parse
+# do not let linter tools remove any imports !!
+from pystache.parser import parse  # noqa
 from pystache.renderer import Renderer
-from pystache.template_spec import TemplateSpec
+from pystache.template_spec import TemplateSpec  # noqa
 
 
 def render(template, context=None, **kwargs):

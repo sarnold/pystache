@@ -206,4 +206,3 @@ class LoaderTests(unittest.TestCase, AssertStringMixin, SetupDefaults):
                         extension='txt')
         template = loader.load_name('template')
         self.assertEqual(template, 'Test template file\n')
-

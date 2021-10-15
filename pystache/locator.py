@@ -14,7 +14,6 @@ from pystache import defaults
 
 
 class Locator(object):
-
     def __init__(self, extension=None):
         """
         Construct a template locator.
@@ -118,8 +117,9 @@ class Locator(object):
         path = self._find_path(search_dirs, file_name)
 
         if path is None:
-            raise TemplateNotFoundError('File %s not found in dirs: %s' %
-                                        (repr(file_name), repr(search_dirs)))
+            raise TemplateNotFoundError(
+                'File %s not found in dirs: %s' % (repr(file_name), repr(search_dirs))
+            )
 
         return path
 

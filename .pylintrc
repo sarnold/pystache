@@ -1,0 +1,23 @@
+# https://github.com/cmheisel/pylintrcs/blob/master/pylintrc
+[MASTER]
+#ignore=pystache/tests
+
+ignore-paths=
+    .*tests/,
+    .*test.py$,
+
+profile=no
+
+jobs=1
+
+suggestion-mode=yes
+
+[MESSAGES CONTROL]
+disable=
+    too-few-public-methods,
+
+[REPORTS]
+output-format=colorized
+
+[FORMAT]
+max-line-length=110

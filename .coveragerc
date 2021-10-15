@@ -9,12 +9,12 @@ omit =
     setup.py
     pystache/tests/*
 
-#plugins =
-#    coverage_python_version
+plugins =
+    coverage_python_version
 
 [report]
 # must set this to True to see missing
-#show_missing = True
+show_missing = True
 
 # Regexes for lines to exclude from consideration
 exclude_lines =
@@ -35,4 +35,4 @@ exclude_lines =
 ignore_errors = True
 
 [html]
-directory = cover
+directory = coverage

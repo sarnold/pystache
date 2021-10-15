@@ -10,18 +10,19 @@ Pystache
 <!-- -->
 <!-- We leave the leading brackets empty here.  Otherwise, unwanted -->
 <!-- caption text shows up in the reST version converted by pandoc. -->
-[![ci](https://github.com/sarnold/pystache/actions/workflows/ci.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/ci.yml)
+[![CI](https://github.com/sarnold/pystache/actions/workflows/ci.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/ci.yml)
 [![Conda](https://github.com/sarnold/pystache/actions/workflows/conda.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/conda.yml)
-[![Wheels](https://github.com/sarnold/pystache/actions/workflows/wheels.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/wheels.yml)
+[![Coverage](https://github.com/sarnold/pystache/actions/workflows/coverage.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/coverage.yml)
+[![Security check - Bandit](https://github.com/sarnold/pystache/actions/workflows/bandit.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/bandit.yml)
 [![Release](https://github.com/sarnold/pystache/actions/workflows/release.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/release.yml)
-[![Python](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
+
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![Branch Coverage](https://raw.githubusercontent.com/sarnold/pystache/badges/master/test-coverage.svg)](https://github.com/sarnold/pystache)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a8fa1bf4638bfc6581b6/maintainability)](https://codeclimate.com/github/sarnold/pystache/maintainability)
 
 [![Latest release](https://img.shields.io/github/v/release/sarnold/pystache?include_prereleases)](https://github.com/sarnold/pystache/releases/latest)
 [![License](https://img.shields.io/github/license/sarnold/pystache)](https://github.com/sarnold/pystache/blob/master/LICENSE)
-[![Maintainability](https://api.codeclimate.com/v1/badges/a8fa1bf4638bfc6581b6/maintainability)](https://codeclimate.com/github/sarnold/pystache/maintainability)
-[![codecov](https://codecov.io/gh/sarnold/pystache/branch/master/graph/badge.svg?token=5PZNMZBI6K)](https://codecov.io/gh/sarnold/pystache)
-
-
+[![Python](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
 
 This updated fork of Pystache is currently tested on Python 3.6+ and in
 Conda, on Linux, Macos, and Windows (Python 2.7 support has been removed).
@@ -207,8 +208,7 @@ The source distribution tests also include doctests and tests from the
 Mustache spec. To include tests from the Mustache spec in your test
 runs:
 
-    git submodule init
-    git submodule update
+    git submodule update --init
 
 The test harness parses the spec's (more human-readable) yaml files if
 [PyYAML](http://pypi.python.org/pypi/PyYAML) is present. Otherwise, it
@@ -238,11 +238,12 @@ Credits
 -------
 
     >>> import pystache
-    >>> context = { 'author': 'Chris Wanstrath', 'maintainer': 'Chris Jerdonek','refurbisher': 'Steve Arnold' }
-    >>> print(pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}\nRefurbisher: {{refurbisher}}", context))
+    >>> context = { 'author': 'Chris Wanstrath', 'maintainer': 'Chris Jerdonek','refurbisher': 'Steve Arnold', 'new_maintainer': 'Thomas David Baker' }
+    >>> print(pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}\nRefurbisher: {{refurbisher}}\nNew maintainer: {{new_maintainer}}", context))
     Author: Chris Wanstrath
     Maintainer: Chris Jerdonek
     Refurbisher: Steve Arnold
+    New maintainer: Thomas David Baker
 
 Pystache logo by [David Phillips](http://davidphillips.us/) is licensed
 under a [Creative Commons Attribution-ShareAlike 3.0 Unported

@@ -253,7 +253,7 @@ jobs:
         if ! [ "${DELTA_WORD}" = "decrease" ]
         then
             echo "" >> coverage-delta.md
-            echo "Nice work, @${{ github.actor }}. Cheers! :rocket:" >> coverage-delta.md
+            echo "Nice work, @${{ github.actor }}. Cheers! :beers:" >> coverage-delta.md
         fi
 
     - name: Comment PR with test coverage delta

@@ -10,7 +10,7 @@ def _get_string_types():
     """
     Return the Python3 string type (no more python2)
     """
-    return (str, type("a".encode('utf-8')))
+    return (str, type('a'.encode('utf-8')))
 
 
 _STRING_TYPES = _get_string_types()
@@ -58,9 +58,7 @@ class MissingTags(object):
 
 class PystacheError(Exception):
     """Base class for Pystache exceptions."""
-    pass
 
 
 class TemplateNotFoundError(PystacheError):
     """An exception raised when a template is not found."""
-    pass

@@ -59,7 +59,7 @@ SEARCH_DIRS = [os.curdir]  # i.e. ['.']
 #   http://docs.python.org/library/cgi.html#cgi.escape
 #   http://docs.python.org/dev/library/html.html#html.escape
 #
-TAG_ESCAPE = lambda u: escape(u, quote=True)
+TAG_ESCAPE = lambda u: escape(u, quote=True)  # noqa
 
 # The default template extension, without the leading dot.
 TEMPLATE_EXTENSION = 'mustache'

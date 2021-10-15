@@ -8,26 +8,10 @@ descending_issues_order: True  # If True, PEP 8 issues in message will be displa
 pycodestyle:  # Same as scanner.linter value. Other option is flake8
     max-line-length: 110  # Default is 79 in PEP 8
 
-# the above pycodestyle section is yaml, however,
-# the following MUST be in the normal setup.cfg format
-[flake8]
-exclude =
-    .git,
-    __pycache__,
-    pystache/tests,
-    test_pystache.py,
-    build,
-    dist
-
-max-line-length = 110
-max-complexity = 25
-addons = file,open,basestring,xrange,unicode,long,cmp
-ignore =
-    # too many leading '#' for block comment
-    E266,
-    # do not assign a lambda expression, use a def
-    E731,
-    # whitespace before ':'
-    E203,
-    # multiple spaces before operator
-    E221,
+flake8:
+    max-line-length: 110  # Default is 79 in PEP 8
+    ignore:  # Errors and warnings to ignore
+        - E266
+        - E731
+        - E203
+        - E221

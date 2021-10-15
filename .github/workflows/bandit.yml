@@ -16,7 +16,7 @@ jobs:
 
     - name: Run bandit
       #uses: ioggstream/bandit-report-artifacts@v0.0.2
-      uses: VCTLabs/bandit-report-artifacts@add-baseline
+      uses: VCTLabs/bandit-report-artifacts@master
       with:
         project_path: pystache
         ignore_failure: true

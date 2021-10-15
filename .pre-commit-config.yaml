@@ -40,7 +40,7 @@ repos:
 #        exclude: '(.*tests/.*|.*test.py$|^setup.py$|^test_pystache.py$)'
 
   - repo: "https://github.com/asottile/blacken-docs"
-    rev: "v1.10.0"
+    rev: "v1.11.0"
     hooks:
       - id: "blacken-docs"
         name: "Format docs (blacken-docs)"
@@ -60,14 +60,14 @@ repos:
           - --remove-unused-variables
 
   - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.3
+    rev: 3.9.2
     hooks:
       - id: flake8
         exclude: '(.*tests/.*|.*test.py$|^setup.py$|^test_.*.py$)'
         additional_dependencies: ["flake8-bugbear"]
 
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.6.2
+    rev: 1.7.0
     hooks:
       - id: bandit
         args: ["-ll", "-b", "bandit_baseline.json"]
@@ -85,7 +85,7 @@ repos:
           ]
 
   - repo: https://github.com/lovesegfault/beautysh
-    rev: v6.1.0
+    rev: v6.2.1
     hooks:
       - id: beautysh
 

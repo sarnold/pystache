@@ -87,8 +87,10 @@ Push a tag to GitHub:
 
 import os
 import sys
+import subprocess as sp
 
 from setuptools import setup
+from shlex import split
 
 FILE_ENCODING = 'utf-8'
 
@@ -181,19 +183,17 @@ def convert_md_to_rst(md_path, rst_temp_path):
 
     """
     # Pandoc uses the UTF-8 character encoding for both input and output.
-    command = "pandoc -f markdown-smart --write=rst --output=%s %s" % (rst_temp_path, md_path)
-    print("converting with pandoc: %s to %s\n-->%s" % (md_path, rst_temp_path,
-                                                       command))
+    command = f"pandoc -f markdown-smart --write=rst --output={rst_temp_path} {md_path}"
+    print(f"converting with pandoc: {md_path} to {rst_temp_path}\n-->{command}")
 
     if os.path.exists(rst_temp_path):
         os.remove(rst_temp_path)
 
-    os.system(command)
+    sp.check_call(split(command))
 
     if not os.path.exists(rst_temp_path):
-        s = ("Error running: %s\n"
-             "  Did you install pandoc per the %s docstring?" % (command,
-                                                                 __file__))
+        s = (f"Error running: {command}\n"
+             "  Did you install pandoc per the {__file__} docstring?")
         sys.exit(s)
 
     return read(rst_temp_path)

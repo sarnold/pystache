@@ -122,6 +122,8 @@ jobs:
       coverage: ${{ steps.coverage.outputs.coverage }}
       coverage-rounded-display: ${{ steps.coverage.outputs.coverage-rounded-display }}
     env:
+      PLATFORM: ubuntu-20.04
+      PYTHON: 3.9
       PYTHONIOENCODING: utf-8
       PIP_DOWNLOAD_CACHE: ${{ github.workspace }}/../.pip_download_cache
 
@@ -132,7 +134,7 @@ jobs:
 
     - uses: actions/setup-python@v2
       with:
-        python-version: '3.9'
+        python-version: ${{ env.PYTHON }}
 
     - name: Add python requirements
       run: |
@@ -140,9 +142,8 @@ jobs:
         pip install tox
 
     - name: Generate coverage and fix pkg name
-      # another workaround for coverage.py missing package name
       run: |
-        tox -e py
+        tox
 
     - name: Code Coverage Summary Report (Text & Value)
       uses: irongut/CodeCoverageSummary@v1.0.5

@@ -19,5 +19,5 @@ jobs:
       uses: VCTLabs/bandit-report-artifacts@master
       with:
         project_path: pystache
-        ignore_failure: true
+        ignore_failure: false
         baseline_file: bandit_baseline.json

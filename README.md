@@ -48,6 +48,47 @@ version of Pystache now passes all tests in [version
 1.1.3](https://github.com/mustache/spec/tree/v1.1.3) of the spec.
 
 
+Making Changes & Contributing
+-----------------------------
+
+This repo is now pre-commit enabled for various linting and format checks
+(and in many cases, automatic fixes).  The checks run on commit/push and will
+fail the commit (if not clean) with some checks performing simple file corrections.
+Simply review the changes and adjust (if needed) then `git add` the files and continue.
+
+If other checks fail on commit, the failure display should explain the error
+types and line numbers. Note you must fix any fatal errors for the commit to
+succeed; some errors should be fixed automatically (use `git status` and
+` git diff` to review any changes).
+
+Note `pylint` is the primary check that requires your own input, as well
+as a decision as to the appropriate fix action.  You must fix any `pylint`
+warnings (relative to the baseline config score) for the commit to succeed.
+
+See the pre-commit docs under `docs/dev/` for more information.
+
+-  [pre-commit-config](docs/dev/pre-commit-config.rst)
+-  [pre-commit-usage](docs/dev/pre-commit-usage.rst)
+
+You will need to install pre-commit before contributing any changes;
+installing it using your system's package manager is recommended,
+otherwise install with pip into your local user's virtual environment
+using something like:
+
+    $ sudo emerge pre-commit  --or--
+    $ pip install pre-commit
+
+then install it into the repo you just cloned:
+
+    $ git clone https://github.com/sarnold/pystache
+    $ cd pystache
+    $ pre-commit install
+    $ pre-commit install-hooks
+
+It's usually a good idea to update the hooks to the latest version:
+
+    pre-commit autoupdate
+
 Requirements
 ------------
 

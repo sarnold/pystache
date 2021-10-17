@@ -48,6 +48,22 @@ repos:
         additional_dependencies:
           - "black==21.9b0"
 
+  - repo: https://github.com/PyCQA/doc8
+    rev: 0.9.1
+    hooks:
+      - id: doc8
+        args:
+          - '--max-line-length=90'
+          - '--ignore=D001'
+
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.9.0
+    hooks:
+      - id: rst-backticks
+        # exclude: ChangeLog\.rst$
+      - id: rst-directive-colons
+      - id: rst-inline-touching-normal
+
   - repo: https://github.com/myint/autoflake
     rev: v1.4
     hooks:

@@ -253,7 +253,7 @@ jobs:
         if ! [ "${DELTA_WORD}" = "decrease" ]
         then
             echo "" >> coverage-delta.md
-            echo "Nice work, @${{ github.actor }}. Cheers! :rocket:" >> coverage-delta.md
+            echo "Nice work, @${{ github.actor }}. Cheers! :beers:" >> coverage-delta.md
         fi
 
     - name: Comment PR with test coverage delta
@@ -293,7 +293,7 @@ jobs:
       uses: emibcn/badge-action@v1
       id: badge
       with:
-        label: 'Coverage'
+        label: 'Branch Coverage'
         status: ${{ needs.test.outputs.coverage-rounded-display }}
         color: ${{
           needs.test.outputs.coverage > 90 && 'green'              ||

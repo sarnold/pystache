@@ -86,7 +86,8 @@ repos:
     rev: 1.7.0
     hooks:
       - id: bandit
-        args: ["-ll", "-b", "bandit_baseline.json"]
+        exclude: '(^setup.py$|^test_.*.py$)'
+        args: ["-b", "bandit_baseline.json"]
 
   - repo: https://github.com/PyCQA/pylint
     rev: v2.11.1

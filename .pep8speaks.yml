@@ -15,3 +15,6 @@ flake8:
         - E731
         - E203
         - E221
+    exclude:
+        - pystache/tests
+        - test_pystache.py

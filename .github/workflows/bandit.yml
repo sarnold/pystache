@@ -17,4 +17,4 @@ jobs:
       with:
         project_path: pystache
         ignore_failure: true
-        #exclude_paths: 'pystache/tests'
+        exclude_paths: 'pystache/tests'

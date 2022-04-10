@@ -13,7 +13,7 @@ Pystache
 [![CI](https://github.com/sarnold/pystache/actions/workflows/ci.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/ci.yml)
 [![Conda](https://github.com/sarnold/pystache/actions/workflows/conda.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/conda.yml)
 [![Coverage](https://github.com/sarnold/pystache/actions/workflows/coverage.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/coverage.yml)
-[![Security check - Bandit](https://github.com/sarnold/pystache/actions/workflows/bandit.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/bandit.yml)
+[![Security check - Bandit](https://github.com/sarnold/pystache/actions/workflows/bandit.yml/badge.svg?event=push)](https://github.com/sarnold/pystache/actions/workflows/bandit.yml)
 [![Release](https://github.com/sarnold/pystache/actions/workflows/release.yml/badge.svg)](https://github.com/sarnold/pystache/actions/workflows/release.yml)
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)

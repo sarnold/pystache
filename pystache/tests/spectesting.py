@@ -237,6 +237,7 @@ def parse(u):
     def code_constructor(loader, node):
         value = loader.construct_mapping(node)
         # ast.literal_eval will not work here => lambda expression
+        # plus this a test, and spec tests are optional => #nosec ?
         return eval(value['python'], {})
 
     yaml.add_constructor('!code', code_constructor)

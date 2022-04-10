@@ -94,11 +94,11 @@ Requirements
 
 Pystache is tested with--
 
--   Python 3.6
 -   Python 3.7
 -   Python 3.8
 -   Python 3.9
--   Conda (py36-py39)
+-   Python 3.10
+-   Conda (py37-py310)
 
 [Distribute](http://packages.python.org/distribute/) (the setuptools fork)
 is no longer required over [setuptools](http://pypi.python.org/pypi/setuptools),

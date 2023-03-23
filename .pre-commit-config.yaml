@@ -9,7 +9,7 @@ repos:
       - id: check-useless-excludes
       - id: check-hooks-apply
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1
+    rev: v4.4.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -40,16 +40,16 @@ repos:
 #        exclude: '(.*tests/.*|.*test.py$|^setup.py$|^test_pystache.py$)'
 
   - repo: "https://github.com/asottile/blacken-docs"
-    rev: "v1.11.0"
+    rev: "1.13.0"
     hooks:
       - id: "blacken-docs"
         name: "Format docs (blacken-docs)"
         args: ["-l", "64"]
         additional_dependencies:
-          - "black==21.9b0"
+          - "black>==22.1.0"
 
   - repo: https://github.com/PyCQA/doc8
-    rev: 0.9.1
+    rev: v1.1.1
     hooks:
       - id: doc8
         args:
@@ -57,7 +57,7 @@ repos:
           - '--ignore=D001'
 
   - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.9.0
+    rev: v1.10.0
     hooks:
       - id: rst-backticks
         # exclude: ChangeLog\.rst$
@@ -65,7 +65,7 @@ repos:
       - id: rst-inline-touching-normal
 
   - repo: https://github.com/myint/autoflake
-    rev: v1.4
+    rev: v2.0.2
     hooks:
       - id: autoflake
         exclude: '(.*tests/.*|.*test.py$|^setup.py$|^test_.*.py$)'
@@ -75,22 +75,22 @@ repos:
           - --remove-duplicate-keys
           - --remove-unused-variables
 
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.2
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
     hooks:
       - id: flake8
         exclude: '(.*tests/.*|.*test.py$|^setup.py$|^test_.*.py$)'
         additional_dependencies: ["flake8-bugbear"]
 
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.0
+    rev: 1.7.5
     hooks:
       - id: bandit
         exclude: '(^setup.py$|^test_.*.py$)'
         args: ["-b", "bandit_baseline.json"]
 
   - repo: https://github.com/PyCQA/pylint
-    rev: v2.11.1
+    rev: v2.17.1
     hooks:
       - id: pylint
         exclude: '(.*tests/.*|.*test.py$|^setup.py$|^test_.*.py$)'
